@@ -8,6 +8,6 @@ import uow.csse.tv.gympe.model.User;
 import java.util.List;
 
 @Repository
-public interface SportRepo extends JpaRepository<Sport, Long> {
+public interface SportRepo extends JpaRepository<Sport, Integer> {
     List<Sport> findAll();
 }

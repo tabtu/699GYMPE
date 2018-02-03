@@ -39,15 +39,15 @@ public class Const {
     public static int COOKIE_TIMEOUT= 30*24*60*60;
 
     @Autowired(required = true)
-    public void setBasePath(@Value("${bptzz.base.path}")String basePath) { Const.BASE_PATH = basePath; }
+    public void setBasePath(@Value("${tv.base.path}")String basePath) { Const.BASE_PATH = basePath; }
 
     @Autowired
-    public void setDataCVPath(@Value("${bptzz.data.cv.path}")String dataCVPath) { Const.DATACV_PATH = dataCVPath; }
+    public void setDataCVPath(@Value("${tv.data.cv.path}")String dataCVPath) { Const.DATACV_PATH = dataCVPath; }
 
     @Autowired
-    public void setProfilePath(@Value("${bptzz.profile.path}")String profilePath) { Const.PROFILE_PATH = profilePath; }
+    public void setProfilePath(@Value("${tv.profile.path}")String profilePath) { Const.PROFILE_PATH = profilePath; }
 
     @Autowired
-    public void setUploadPath(@Value("${bptzz.upload.path}")String uploadPath) { Const.UPLOAD_PATH = uploadPath; }
+    public void setUploadPath(@Value("${tv.upload.path}")String uploadPath) { Const.UPLOAD_PATH = uploadPath; }
 
 }
