@@ -2,11 +2,11 @@ package uow.csse.tv.gympe.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import uow.csse.tv.gympe.model.Message;
-import uow.csse.tv.gympe.model.Msg;
+import uow.csse.tv.gympe.model.School;
+import java.util.List;
 
 /**
- * Message Repository Interface
+ * School Repository Interface
  *
  * @author 	Tab Tu
  * @date	2018-01-30
@@ -16,6 +16,9 @@ import uow.csse.tv.gympe.model.Msg;
  */
 
 @Repository
-public interface MessageRepo extends JpaRepository<Message, Msg> {
+public interface SchoolRepo extends JpaRepository<School, Integer> {
+
+    @Override
+    List<School> findAll();
 
 }

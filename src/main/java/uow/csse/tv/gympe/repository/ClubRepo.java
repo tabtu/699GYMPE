@@ -2,21 +2,23 @@ package uow.csse.tv.gympe.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-import uow.csse.tv.gympe.model.Sport;
+import uow.csse.tv.gympe.model.Club;
+
+import java.util.List;
+
 
 /**
- * Sport Repository Interface
+ * Message Repository Interface
  *
  * @author 	Tab Tu
  * @date	2018-01-30
- * @update  Tab Tu on Jan.30 2018
+ * @update  Tab Tu on Feb.03 2018
  * @since	1.0
  *
  */
 
-import java.util.List;
-
 @Repository
-public interface SportRepo extends JpaRepository<Sport, Short> {
-    List<Sport> findAll();
+public interface ClubRepo extends JpaRepository<Club, Integer> {
+    @Override
+    List<Club> findAll();
 }

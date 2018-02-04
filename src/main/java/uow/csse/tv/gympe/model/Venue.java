@@ -1,49 +1,45 @@
 package uow.csse.tv.gympe.model;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * Club Entity
+ * Venue Entity
  *
  * @author 	Tab Tu
  * @date	2018-01-30
- * @update  Tab Tu on Feb.03 2018
+ * @update  Tab Tu on Jan.30 2018
  * @since	1.0
  *
  */
 
-@Entity(name = "Club")
-@Table(name = "tv_club")
-public class Club extends Entitys implements Serializable {
+@Entity(name = "Venues")
+@Table(name = "tv_venues")
+public class Venue extends Entitys implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int club_id;
+    private int venue_id;
     @Column(nullable = false)
     private String name;
+    private String tel;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="school_district")
+    @JoinColumn(name="venues_district")
     @JsonManagedReference
     private District district;
     @Column(nullable = false)
     private String address;
-    private String tel;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "tv_club_sport", joinColumns = @JoinColumn(name = "club_id"), inverseJoinColumns = @JoinColumn(name = "sport_id"))
-    private List<Sport> myfav = new ArrayList<Sport>();
 
-    public Club() { }
+    public Venue() { }
 
-    public int getClub_id() {
-        return club_id;
+    public int getVenues_id() {
+        return venue_id;
     }
 
-    public void setClub_id(int club_id) {
-        this.club_id = club_id;
+    public void setVenues_id(int venues_id) {
+        this.venue_id = venues_id;
     }
 
     public String getName() {
@@ -76,13 +72,5 @@ public class Club extends Entitys implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
-    }
-
-    public List<Sport> getMyfav() {
-        return myfav;
-    }
-
-    public void setMyfav(List<Sport> myfav) {
-        this.myfav = myfav;
     }
 }

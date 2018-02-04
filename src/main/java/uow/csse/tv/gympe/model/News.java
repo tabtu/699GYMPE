@@ -23,8 +23,10 @@ public class News extends Entitys implements Serializable {
     private Long news_id;
     @Column(nullable = false)
     private long datetime;
-    @Column(nullable = false)
+    @Column(length = 65535,columnDefinition="Text")
     private String text;
 
+    public News() {
 
+    }
 }

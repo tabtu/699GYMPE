@@ -8,9 +8,13 @@ import uow.csse.tv.gympe.model.User;
 import java.util.List;
 
 /**
+ * User Repository Interface
+ *
  * @author 	Tab Tu
- * @update	Nov.23 2017
- * @version	1.0
+ * @date	2018-01-30
+ * @update  Tab Tu on Jan.30 2018
+ * @since	1.0
+ *
  */
 
 @Repository
