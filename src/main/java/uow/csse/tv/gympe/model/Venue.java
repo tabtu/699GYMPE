@@ -5,6 +5,7 @@ import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Venue Entity
@@ -31,15 +32,16 @@ public class Venue extends Entitys implements Serializable {
     private District district;
     @Column(nullable = false)
     private String address;
+    private Date createDate;
 
     public Venue() { }
 
-    public int getVenues_id() {
+    public int getVenue_id() {
         return venue_id;
     }
 
-    public void setVenues_id(int venues_id) {
-        this.venue_id = venues_id;
+    public void setVenue_id(int venue_id) {
+        this.venue_id = venue_id;
     }
 
     public String getName() {
@@ -72,5 +74,13 @@ public class Venue extends Entitys implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 }

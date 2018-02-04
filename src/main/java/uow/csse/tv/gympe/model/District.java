@@ -28,6 +28,7 @@ public class District extends Entitys implements Serializable {
     @JoinColumn(name="district_city")
     @JsonManagedReference
     private City city;
+    private short sort;
 
     public District() {
 
@@ -55,5 +56,13 @@ public class District extends Entitys implements Serializable {
 
     public void setCity(City city) {
         this.city = city;
+    }
+
+    public short getSort() {
+        return sort;
+    }
+
+    public void setSort(short sort) {
+        this.sort = sort;
     }
 }

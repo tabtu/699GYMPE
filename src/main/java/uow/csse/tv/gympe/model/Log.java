@@ -2,6 +2,7 @@ package uow.csse.tv.gympe.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Log Entity
@@ -24,7 +25,7 @@ public class Log extends Entitys implements Serializable {
     @JoinColumn(name="lg_user")
     private User lguser;
     @Column(nullable = false)
-    private long lgtime;
+    private Date lgtime;
     @Column(nullable = false)
     private String operation;
 
@@ -32,7 +33,7 @@ public class Log extends Entitys implements Serializable {
 
     }
 
-    public Log(User u, long t, String op) {
+    public Log(User u, Date t, String op) {
         this.lguser = u;
         this.lgtime = t;
         this.operation = op;
@@ -54,11 +55,11 @@ public class Log extends Entitys implements Serializable {
         this.lguser = lguser;
     }
 
-    public long getLgtime() {
+    public Date getLgtime() {
         return lgtime;
     }
 
-    public void setLgtime(long lgtime) {
+    public void setLgtime(Date lgtime) {
         this.lgtime = lgtime;
     }
 

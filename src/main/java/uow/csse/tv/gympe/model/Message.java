@@ -21,7 +21,7 @@ public class Message extends Entitys implements Serializable {
     private Msg msgid;
     @Column(nullable = false)
     private boolean isread;
-    @Column(nullable = false)
+    @Column(length = 65535, columnDefinition="Text")
     private String text;
 
     public Message() {

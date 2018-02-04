@@ -18,4 +18,8 @@ public interface LoginService {
     User findUserByEmail(String email);
 
     User findUserByUsernameOrEmail(String email, String username);
+
+    int login(User user);
+
+    boolean register(User user);
 }

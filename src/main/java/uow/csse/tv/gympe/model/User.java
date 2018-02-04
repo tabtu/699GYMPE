@@ -1,7 +1,10 @@
 package uow.csse.tv.gympe.model;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * User Entity
@@ -20,7 +23,8 @@ public class User extends Entitys implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long user_id;
-    @Column(nullable = false, unique = true)
+//    @Column(nullable = false, unique = true)
+    @NaturalId
     private String username;
     @Column(nullable = false)
     private String password;
@@ -32,12 +36,18 @@ public class User extends Entitys implements Serializable {
     @Column(length = 65535,columnDefinition="Text")
     private String introduction;
     @Column(nullable = false)
-    private Long createTime;
+    private Date createTime;
     @Column(nullable = false)
-    private Long lastModifyTime;
+    private Date lastModifyTime;
 
 
     public User() { super(); }
+
+    public User(String userName, String passWord) {
+        super();
+        this.username = userName;
+        this.password = passWord;
+    }
 
     public User(String userName, String passWord, String email) {
         super();
@@ -103,19 +113,19 @@ public class User extends Entitys implements Serializable {
         this.introduction = introduction;
     }
 
-    public Long getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Long createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-    public Long getLastModifyTime() {
+    public Date getLastModifyTime() {
         return lastModifyTime;
     }
 
-    public void setLastModifyTime(Long lastModifyTime) {
+    public void setLastModifyTime(Date lastModifyTime) {
         this.lastModifyTime = lastModifyTime;
     }
 }

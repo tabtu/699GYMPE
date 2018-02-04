@@ -35,6 +35,7 @@ public class Sport extends Entitys implements Serializable {
     @JoinColumn(name="sport_category")
     @JsonManagedReference
     private Category category;
+    private short sort;
 
 //    @ManyToMany(mappedBy = "schools", cascade = CascadeType.ALL)
 //    private List<School> myfav;
@@ -65,5 +66,13 @@ public class Sport extends Entitys implements Serializable {
 
     public void setCategory(Category category) {
         this.category = category;
+    }
+
+    public short getSort() {
+        return sort;
+    }
+
+    public void setSort(short sort) {
+        this.sort = sort;
     }
 }

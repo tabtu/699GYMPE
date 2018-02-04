@@ -24,6 +24,7 @@ public class Category extends Entitys implements Serializable {
     private short cate_id;
     @Column(nullable = false)
     private String name;
+    private short sort;
 
     public Category() {
 
@@ -43,5 +44,13 @@ public class Category extends Entitys implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public short getSort() {
+        return sort;
+    }
+
+    public void setSort(short sort) {
+        this.sort = sort;
     }
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Sport list
@@ -22,11 +23,45 @@ public class News extends Entitys implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long news_id;
     @Column(nullable = false)
-    private long datetime;
+    private Date updateDate;
+    @Column(nullable = false)
+    private String title;
     @Column(length = 65535,columnDefinition="Text")
     private String text;
 
     public News() {
 
+    }
+
+    public Long getNews_id() {
+        return news_id;
+    }
+
+    public void setNews_id(Long news_id) {
+        this.news_id = news_id;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getText() {
+        return text;
+    }
+
+    public void setText(String text) {
+        this.text = text;
     }
 }

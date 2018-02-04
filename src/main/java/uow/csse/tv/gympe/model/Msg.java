@@ -2,6 +2,8 @@ package uow.csse.tv.gympe.model;
 
 import javax.persistence.Embeddable;
 import java.io.Serializable;
+import java.sql.Time;
+import java.util.Date;
 
 /**
  * Message Entity
@@ -18,14 +20,14 @@ public class Msg implements Serializable {
 
     private long sender;
     private long receiver;
-    private long sendtime;
-    private long receivetime;
+    private Date sendtime;
+    private Date receivetime;
 
     public Msg() {
 
     }
 
-    public Msg(long s, long r, long st, long rt) {
+    public Msg(long s, long r, Date st, Date rt) {
         this.sender = s;
         this.receiver = r;
         this.sendtime = st;
@@ -48,19 +50,19 @@ public class Msg implements Serializable {
         this.receiver = receiver;
     }
 
-    public long getSendtime() {
+    public Date getSendtime() {
         return sendtime;
     }
 
-    public void setSendtime(long sendtime) {
+    public void setSendtime(Date sendtime) {
         this.sendtime = sendtime;
     }
 
-    public long getReceivetime() {
+    public Date getReceivetime() {
         return receivetime;
     }
 
-    public void setReceivetime(long receivetime) {
+    public void setReceivetime(Date receivetime) {
         this.receivetime = receivetime;
     }
 

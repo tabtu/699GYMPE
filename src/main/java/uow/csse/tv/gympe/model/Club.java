@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -35,6 +36,10 @@ public class Club extends Entitys implements Serializable {
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tv_club_sport", joinColumns = @JoinColumn(name = "club_id"), inverseJoinColumns = @JoinColumn(name = "sport_id"))
     private List<Sport> myfav = new ArrayList<Sport>();
+    private short sort;
+    private String introduction;
+    private Date createDate;
+    private Date updateDate;
 
     public Club() { }
 
@@ -84,5 +89,37 @@ public class Club extends Entitys implements Serializable {
 
     public void setMyfav(List<Sport> myfav) {
         this.myfav = myfav;
+    }
+
+    public String getIntroduction() {
+        return introduction;
+    }
+
+    public void setIntroduction(String introduction) {
+        this.introduction = introduction;
+    }
+
+    public short getSort() {
+        return sort;
+    }
+
+    public void setSort(short sort) {
+        this.sort = sort;
+    }
+
+    public Date getCreateDate() {
+        return createDate;
+    }
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 }

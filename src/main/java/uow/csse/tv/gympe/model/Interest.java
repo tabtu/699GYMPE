@@ -44,4 +44,36 @@ public class Interest extends Entitys implements Serializable {
         sport = s;
         rate = r;
     }
+
+    public Long getInterest_id() {
+        return interest_id;
+    }
+
+    public void setInterest_id(Long interest_id) {
+        this.interest_id = interest_id;
+    }
+
+    public Sport getSport() {
+        return sport;
+    }
+
+    public void setSport(Sport sport) {
+        this.sport = sport;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
+    }
 }

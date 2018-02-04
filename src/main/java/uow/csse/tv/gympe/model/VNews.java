@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * VNews Entity
@@ -31,6 +32,8 @@ public class VNews extends Entitys implements Serializable {
     private String content;
     @Column(nullable = false)
     private String picture;
+    @Column(nullable = false)
+    private Date updateDate;
 
     public VNews() { }
 
@@ -72,5 +75,13 @@ public class VNews extends Entitys implements Serializable {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public Date getUpdateDate() {
+        return updateDate;
+    }
+
+    public void setUpdateDate(Date updateDate) {
+        this.updateDate = updateDate;
     }
 }

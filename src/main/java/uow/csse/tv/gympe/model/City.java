@@ -24,6 +24,7 @@ public class City extends Entitys implements Serializable {
     private short city_id;
     @Column(nullable = false)
     private String name;
+    private short sort;
 
     public City() {
 
@@ -43,5 +44,13 @@ public class City extends Entitys implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public short getSort() {
+        return sort;
+    }
+
+    public void setSort(short sort) {
+        this.sort = sort;
     }
 }
