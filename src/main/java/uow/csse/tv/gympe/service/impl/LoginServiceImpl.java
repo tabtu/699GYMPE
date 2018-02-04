@@ -2,6 +2,7 @@ package uow.csse.tv.gympe.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uow.csse.tv.gympe.config.Const;
 import uow.csse.tv.gympe.model.User;
 import uow.csse.tv.gympe.repository.UserRepo;
 import uow.csse.tv.gympe.service.LoginService;
@@ -36,8 +37,10 @@ public class LoginServiceImpl implements LoginService {
 
     public int login(User user) {
         User tmp = userRepo.findByUsername(user.getUsername());
-        String md5pwd = MD5Util.encrypt(user.getUsername() + user.getPassword());
+        String md5pwd = MD5Util.encrypt(user.getPassword() + Const.PASSWORD_KEY);
         if (tmp != null) {
+            System.out.println(tmp.getPassword());
+            System.out.println(md5pwd);
             if (tmp.getPassword().equals(md5pwd)) {
                 return 1;
             } else {
@@ -49,11 +52,15 @@ public class LoginServiceImpl implements LoginService {
     }
 
     public boolean register(User user) {
-        user.setPassword(MD5Util.encrypt(user.getUsername() + user.getPassword()));
-        User tmp = userRepo.save(user);
-        if (tmp != null) {
-            return true;
-        } else {
+        try {
+            user.setPassword(MD5Util.encrypt(user.getPassword() + Const.PASSWORD_KEY));
+            User tmp = userRepo.save(user);
+            if (tmp != null) {
+                return true;
+            } else {
+                return false;
+            }
+        } catch(Exception e) {
             return false;
         }
     }

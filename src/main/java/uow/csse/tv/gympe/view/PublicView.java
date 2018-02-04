@@ -59,4 +59,10 @@ public class PublicView {
         User usr = new User(username, password);
         return lgServ.login(usr);
     }
+
+    @RequestMapping(value = "/test", method = RequestMethod.POST)
+    @ResponseBody
+    public int test(@RequestParam("usr") User user) {
+        return lgServ.login(user);
+    }
 }
