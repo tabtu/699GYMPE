@@ -23,20 +23,49 @@ public class PublicView {
         return userServ.findSportAll();
     }
 
-    @GetMapping(value = "/school")
-    public List<School> getSchoollist() {
-        return userServ.findSchoolALL();
-    }
-
     @GetMapping(value = "/club")
     public List<Club> getClublist() {
         return userServ.findClubAll();
+    }
+
+    @GetMapping(value = "/school")
+    public List<Club> getSchoollist() {
+        return userServ.findSchoolAll();
     }
 
     @GetMapping(value = "/venue")
     public List<Venue> getVenuelist() {
         return userServ.findVenueAll();
     }
+
+//    @RequestMapping(value = "/userlist{type}", method = RequestMethod.GET)
+//    public List<User> getUserlist(HttpServletRequest request) {
+//        String str = request.getParameter("type");
+//        int type = Integer.parseInt(str);
+//        return userServ.findUserList(type);
+//    }
+
+    @RequestMapping(value = "/user{usid}", method = RequestMethod.GET)
+    public User getUser(HttpServletRequest request) {
+        String str = request.getParameter("usid");
+        long usid = Long.parseLong(str);
+        return userServ.findUser(usid);
+    }
+
+    @RequestMapping(value = "/user{usnm}", method = RequestMethod.GET)
+    public User getUser0(HttpServletRequest request) {
+        String usnm = request.getParameter("usnm");
+        return userServ.findUser(usnm);
+    }
+
+//    @RequestMapping(value = "/user{type}{exid}", method = RequestMethod.GET)
+//    public User getUser1(HttpServletRequest request) {
+//        String str0 = request.getParameter("type");
+//        String str1 = request.getParameter("exid");
+//        int type = Integer.parseInt(str0);
+//        int exid = Integer.parseInt(str1);
+//        return userServ.findUser(type, exid);
+//    }
 
     @GetMapping(value = "/regist")
     public boolean regist() {

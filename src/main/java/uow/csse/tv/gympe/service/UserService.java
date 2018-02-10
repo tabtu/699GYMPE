@@ -19,9 +19,17 @@ import java.util.List;
 public interface UserService {
     List<Sport> findSportAll();
 
-    List<School> findSchoolALL();
-
     List<Club> findClubAll();
 
+    List<Club> findSchoolAll();
+
     List<Venue> findVenueAll();
+
+//    List<User> findUserList(int type);
+
+    User findUser(long user_id);
+
+    User findUser(String username);
+
+//    User findUser(int type, int ex_id);
 }

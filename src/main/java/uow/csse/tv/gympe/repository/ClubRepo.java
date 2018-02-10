@@ -19,6 +19,8 @@ import java.util.List;
 
 @Repository
 public interface ClubRepo extends JpaRepository<Club, Integer> {
-    @Override
+
     List<Club> findAll();
+
+    List<Club> findClubByIsSchoolOrderBySort(boolean isSchool);
 }

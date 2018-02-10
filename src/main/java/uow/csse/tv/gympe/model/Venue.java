@@ -17,7 +17,7 @@ import java.util.Date;
  *
  */
 
-@Entity(name = "Venues")
+@Entity(name = "Venue")
 @Table(name = "tv_venues")
 public class Venue extends Entitys implements Serializable {
     @Id

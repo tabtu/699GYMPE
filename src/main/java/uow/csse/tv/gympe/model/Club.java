@@ -27,19 +27,22 @@ public class Club extends Entitys implements Serializable {
     @Column(nullable = false)
     private String name;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="school_district")
+    @JoinColumn(name="club_district")
     @JsonManagedReference
     private District district;
+    private String picture;
     @Column(nullable = false)
     private String address;
     private String tel;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "tv_club_sport", joinColumns = @JoinColumn(name = "club_id"), inverseJoinColumns = @JoinColumn(name = "sport_id"))
-    private List<Sport> myfav = new ArrayList<Sport>();
     private short sort;
     private String introduction;
     private Date createDate;
     private Date updateDate;
+    private boolean isSchool;
+    @ManyToMany(mappedBy = "club", cascade = CascadeType.ALL)
+    private List<Coach> coach = new ArrayList<>();
+    @ManyToMany(mappedBy = "club", cascade = CascadeType.ALL)
+    private List<Referee> referee = new ArrayList<>();
 
     public Club() { }
 
@@ -83,14 +86,6 @@ public class Club extends Entitys implements Serializable {
         this.address = address;
     }
 
-    public List<Sport> getMyfav() {
-        return myfav;
-    }
-
-    public void setMyfav(List<Sport> myfav) {
-        this.myfav = myfav;
-    }
-
     public String getIntroduction() {
         return introduction;
     }
@@ -121,5 +116,37 @@ public class Club extends Entitys implements Serializable {
 
     public void setUpdateDate(Date updateDate) {
         this.updateDate = updateDate;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public boolean getIsSchool() {
+        return isSchool;
+    }
+
+    public void setIsSchool(boolean isSchool) {
+        this.isSchool = isSchool;
+    }
+
+    public List<Coach> getCoach() {
+        return coach;
+    }
+
+    public void setCoach(List<Coach> coach) {
+        this.coach = coach;
+    }
+
+    public List<Referee> getReferee() {
+        return referee;
+    }
+
+    public void setReferee(List<Referee> referee) {
+        this.referee = referee;
     }
 }

@@ -28,6 +28,18 @@ public interface UserRepo extends JpaRepository<User, Long> {
 
     List<User> findByEnabled(boolean enabled);
 
+    List<User> findUserByAthleteNotNull();
+
+    List<User> findUserByCoachNotNull();
+
+    List<User> findUserByRefereeNotNull();
+
+//    User findUserByAthlete_Athlete_id(int athlete_id);
+//
+//    User findUserByCoach_Coach_id(int coach_id);
+//
+//    User findUserByReferee_Referee_id(int referee_id);
+
 //    @Transactional
 //    @Modifying
 //    @Query("UPDATE bptzz_user SET username=?2, password=?3, email=?4 WHERE user_id=?1")
