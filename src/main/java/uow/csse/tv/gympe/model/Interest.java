@@ -11,8 +11,8 @@ import java.util.Set;
  * Interest Entity
  *
  * @author 	Tab Tu
- * @date	2017-11-01
- * @update  Tab Tu on Nov.1 2017
+ * @date	2018-01-30
+ * @update  Tab Tu on Feb.03 2018
  * @since	1.0
  *
  */
@@ -25,13 +25,13 @@ public class Interest extends Entitys implements Serializable {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long interest_id;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="user_interest")
+    @JoinColumn(name="interest_user")
     @JsonManagedReference
-    private User user_id;
+    private User user;
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="sport_interest")
+    @JoinColumn(name="interest_sport")
     @JsonManagedReference
-    private Sport sport_id;
+    private Sport sport;
     @Column(nullable = true)
     private int rate;
 
@@ -40,8 +40,40 @@ public class Interest extends Entitys implements Serializable {
     }
 
     public Interest(User u, Sport s, int r) {
-        user_id = u;
-        sport_id = s;
+        user = u;
+        sport = s;
         rate = r;
+    }
+
+    public Long getInterest_id() {
+        return interest_id;
+    }
+
+    public void setInterest_id(Long interest_id) {
+        this.interest_id = interest_id;
+    }
+
+    public Sport getSport() {
+        return sport;
+    }
+
+    public void setSport(Sport sport) {
+        this.sport = sport;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
     }
 }

@@ -1,7 +1,12 @@
 package uow.csse.tv.gympe.model;
 
+import org.hibernate.annotations.NaturalId;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * User Entity
@@ -20,11 +25,12 @@ public class User extends Entitys implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long user_id;
-    @Column(nullable = false, unique = true)
+//    @Column(nullable = false, unique = true)
+    @NaturalId
     private String username;
     @Column(nullable = false)
     private String password;
-    @Column(nullable = false, unique = true)
+    @Column(unique = true)
     private String email;
     @Column(nullable = false)
     private boolean enabled;
@@ -32,12 +38,31 @@ public class User extends Entitys implements Serializable {
     @Column(length = 65535,columnDefinition="Text")
     private String introduction;
     @Column(nullable = false)
-    private Long createTime;
+    private Date createTime;
     @Column(nullable = false)
-    private Long lastModifyTime;
-
+    private Date lastModifyTime;
+    private String name;
+    private Date birth;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "tv_user_sport", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "sport_id"))
+    private List<Sport> myfav = new ArrayList<>();
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="user_athlete")
+    private Athlete athlete;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="user_coach")
+    private Coach coach;
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JoinColumn(name="user_referee")
+    private Referee referee;
 
     public User() { super(); }
+
+    public User(String userName, String passWord) {
+        super();
+        this.username = userName;
+        this.password = passWord;
+    }
 
     public User(String userName, String passWord, String email) {
         super();
@@ -103,19 +128,67 @@ public class User extends Entitys implements Serializable {
         this.introduction = introduction;
     }
 
-    public Long getCreateTime() {
+    public Date getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Long createTime) {
+    public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
 
-    public Long getLastModifyTime() {
+    public Date getLastModifyTime() {
         return lastModifyTime;
     }
 
-    public void setLastModifyTime(Long lastModifyTime) {
+    public void setLastModifyTime(Date lastModifyTime) {
         this.lastModifyTime = lastModifyTime;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Date getBirth() {
+        return birth;
+    }
+
+    public void setBirth(Date birth) {
+        this.birth = birth;
+    }
+
+    public Athlete getAthlete() {
+        return athlete;
+    }
+
+    public void setAthlete(Athlete athlete) {
+        this.athlete = athlete;
+    }
+
+    public Coach getCoach() {
+        return coach;
+    }
+
+    public void setCoach(Coach coach) {
+        this.coach = coach;
+    }
+
+    public Referee getReferee() {
+        return referee;
+    }
+
+    public void setReferee(Referee referee) {
+        this.referee = referee;
+    }
+
+    public List<Sport> getMyfav() {
+        return myfav;
+    }
+
+    public void setMyfav(List<Sport> myfav) {
+        this.myfav = myfav;
     }
 }

@@ -1,18 +1,35 @@
 package uow.csse.tv.gympe.service;
 
-import uow.csse.tv.gympe.model.User;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import uow.csse.tv.gympe.model.*;
+
+import java.util.List;
 
 /**
+ * Sport Service Interface
+ *
  * @author 	Tab Tu
  * @date	2018-01-30
- * @update	Jan.30 2018
- * @version	1.0
+ * @update  Tab Tu on Feb.03 2018
+ * @since	1.0
+ *
  */
 
 public interface UserService {
-    User findUserByUsername(String username);
+    List<Sport> findSportAll();
 
-    User findUserByEmail(String email);
+    List<Club> findClubAll();
 
-    User findUserByUsernameOrEmail(String email, String username);
+    List<Club> findSchoolAll();
+
+    List<Venue> findVenueAll();
+
+//    List<User> findUserList(int type);
+
+    User findUser(long user_id);
+
+    User findUser(String username);
+
+//    User findUser(int type, int ex_id);
 }

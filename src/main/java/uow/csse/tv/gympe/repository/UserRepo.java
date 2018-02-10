@@ -8,9 +8,13 @@ import uow.csse.tv.gympe.model.User;
 import java.util.List;
 
 /**
+ * User Repository Interface
+ *
  * @author 	Tab Tu
- * @update	Nov.23 2017
- * @version	1.0
+ * @date	2018-01-30
+ * @update  Tab Tu on Jan.30 2018
+ * @since	1.0
+ *
  */
 
 @Repository
@@ -23,6 +27,18 @@ public interface UserRepo extends JpaRepository<User, Long> {
     User findByEmail(String email);
 
     List<User> findByEnabled(boolean enabled);
+
+    List<User> findUserByAthleteNotNull();
+
+    List<User> findUserByCoachNotNull();
+
+    List<User> findUserByRefereeNotNull();
+
+//    User findUserByAthlete_Athlete_id(int athlete_id);
+//
+//    User findUserByCoach_Coach_id(int coach_id);
+//
+//    User findUserByReferee_Referee_id(int referee_id);
 
 //    @Transactional
 //    @Modifying
