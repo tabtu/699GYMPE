@@ -92,4 +92,21 @@ public class Venue extends Entitys implements Serializable {
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
     }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public List<Sport> getSports() {
+        return sports;
+    }
+
+    @JsonBackReference
+    public void setSports(List<Sport> sports) {
+        this.sports = sports;
+    }
 }

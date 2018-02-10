@@ -144,6 +144,7 @@ public class Club extends Entitys implements Serializable {
         return athletes;
     }
 
+    @JsonBackReference
     public void setAthletes(List<Athlete> athletes) {
         this.athletes = athletes;
     }
@@ -152,6 +153,7 @@ public class Club extends Entitys implements Serializable {
         return coaches;
     }
 
+    @JsonBackReference
     public void setCoaches(List<Coach> coaches) {
         this.coaches = coaches;
     }
@@ -160,6 +162,7 @@ public class Club extends Entitys implements Serializable {
         return referees;
     }
 
+    @JsonBackReference
     public void setReferees(List<Referee> referees) {
         this.referees = referees;
     }

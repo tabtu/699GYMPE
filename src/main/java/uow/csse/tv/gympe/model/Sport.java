@@ -86,6 +86,7 @@ public class Sport extends Entitys implements Serializable {
         return venues;
     }
 
+    @JsonBackReference
     public void setVenues(List<Venue> venues) {
         this.venues = venues;
     }

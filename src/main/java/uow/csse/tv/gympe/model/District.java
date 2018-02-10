@@ -55,7 +55,6 @@ public class District extends Entitys implements Serializable {
         return city;
     }
 
-    @JsonBackReference
     public void setCity(City city) {
         this.city = city;
     }

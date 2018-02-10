@@ -50,7 +50,6 @@ public class VNews extends Entitys implements Serializable {
         return venue;
     }
 
-    @JsonBackReference
     public void setVenue(Venue venue) {
         this.venue = venue;
     }

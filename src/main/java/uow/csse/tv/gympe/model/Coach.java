@@ -1,5 +1,6 @@
 package uow.csse.tv.gympe.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -56,6 +57,7 @@ public class Coach extends Entitys implements Serializable {
         return clubs;
     }
 
+    @JsonBackReference
     public void setClubs(List<Club> clubs) {
         this.clubs = clubs;
     }
