@@ -25,11 +25,13 @@ public interface UserService {
 
     List<Venue> findVenueAll();
 
+    List<User> findUserAll();
+
 //    List<User> findUserList(int type);
 
-    User findUser(long user_id);
+    User findUserByUserId(String user_id);
 
-    User findUser(String username);
+    User findUserByUserName(String username);
 
 //    User findUser(int type, int ex_id);
 }

@@ -1,6 +1,13 @@
 package uow.csse.tv.gympe.service.impl;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import uow.csse.tv.gympe.model.Category;
+import uow.csse.tv.gympe.model.City;
+import uow.csse.tv.gympe.model.District;
+import uow.csse.tv.gympe.repository.CategoryRepo;
+import uow.csse.tv.gympe.repository.CityRepo;
+import uow.csse.tv.gympe.repository.DistrictRepo;
 import uow.csse.tv.gympe.service.SystService;
 
 /**
@@ -16,4 +23,27 @@ import uow.csse.tv.gympe.service.SystService;
 @Service
 public class SystServiceImpl implements SystService {
 
+    @Autowired
+    private CityRepo cityRepo;
+
+    @Autowired
+    private CategoryRepo categoryRepo;
+
+    @Autowired
+    private DistrictRepo districtRepo;
+
+    @Override
+    public City findCity(int city_id) {
+        return cityRepo.findOne(city_id);
+    }
+
+    @Override
+    public Category findCategory(int category_id) {
+        return categoryRepo.findOne(category_id);
+    }
+
+    @Override
+    public District findDistrict(int district_id) {
+        return districtRepo.findOne(district_id);
+    }
 }

@@ -1,5 +1,9 @@
 package uow.csse.tv.gympe.service;
 
+import uow.csse.tv.gympe.model.Category;
+import uow.csse.tv.gympe.model.City;
+import uow.csse.tv.gympe.model.District;
+
 /**
  * Login Service Implement
  *
@@ -11,5 +15,9 @@ package uow.csse.tv.gympe.service;
  */
 
 public interface SystService {
+    City findCity(int city_id);
 
+    Category findCategory(int category_id);
+
+    District findDistrict(int district_id);
 }

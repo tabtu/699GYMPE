@@ -9,6 +9,8 @@ import uow.csse.tv.gympe.service.LoginService;
 import uow.csse.tv.gympe.service.SystService;
 import uow.csse.tv.gympe.utils.MD5Util;
 
+import java.util.Date;
+
 /**
  * Login Service Implement
  *
@@ -35,6 +37,7 @@ public class LoginServiceImpl implements LoginService {
     @Override
     public User findUserByEmail(String email) { return userRepo.findByEmail(email); }
 
+    @Override
     public int login(User user) {
         User tmp = userRepo.findByUsername(user.getUsername());
         String md5pwd = MD5Util.encrypt(user.getPassword() + Const.PASSWORD_KEY);
@@ -51,9 +54,13 @@ public class LoginServiceImpl implements LoginService {
         }
     }
 
+    @Override
     public boolean register(User user) {
         try {
             user.setPassword(MD5Util.encrypt(user.getPassword() + Const.PASSWORD_KEY));
+            user.setCreateTime(new Date());
+            user.setEnabled(true);
+            user.setLastModifyTime(new Date());
             User tmp = userRepo.save(user);
             if (tmp != null) {
                 return true;

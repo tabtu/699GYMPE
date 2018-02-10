@@ -1,5 +1,9 @@
 package uow.csse.tv.gympe.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,17 +21,21 @@ import java.util.List;
 
 @Entity(name = "Referee")
 @Table(name = "tv_referee")
+@JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
 public class Referee extends Entitys implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int referee_id;
+    private boolean gender;
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "tv_referee_qualification", joinColumns = @JoinColumn(name = "referee_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
-    private List<Qualification> qualification;
+    @JoinTable(name = "tv_referee_qualification", joinColumns = @JoinColumn(name = "referee_id"), inverseJoinColumns = @JoinColumn(name = "qualification_id"))
+    @JsonManagedReference
+    private List<Qualification> qualifications;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tv_referee_club", joinColumns = @JoinColumn(name = "referee_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
-    private List<Club> club = new ArrayList<>();
+    @JsonManagedReference
+    private List<Club> clubs = new ArrayList<>();
 
     public Referee() {
 
@@ -41,19 +49,29 @@ public class Referee extends Entitys implements Serializable {
         this.referee_id = referee_id;
     }
 
-    public List<Club> getClub() {
-        return club;
+    public boolean getGender() {
+        return gender;
     }
 
-    public void setClub(List<Club> club) {
-        this.club = club;
+    public void setGender(boolean gender) {
+        this.gender = gender;
     }
 
-    public List<Qualification> getQualification() {
-        return qualification;
+    public List<Club> getClubs() {
+        return clubs;
     }
 
-    public void setQualification(List<Qualification> qualification) {
-        this.qualification = qualification;
+    @JsonBackReference
+    public void setClubs(List<Club> clubs) {
+        this.clubs = clubs;
+    }
+
+    public List<Qualification> getQualifications() {
+        return qualifications;
+    }
+
+    @JsonBackReference
+    public void setQualifications(List<Qualification> qualifications) {
+        this.qualifications = qualifications;
     }
 }

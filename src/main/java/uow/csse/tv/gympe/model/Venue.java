@@ -1,11 +1,14 @@
 package uow.csse.tv.gympe.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Venue Entity
@@ -18,7 +21,7 @@ import java.util.Date;
  */
 
 @Entity(name = "Venue")
-@Table(name = "tv_venues")
+@Table(name = "tv_venue")
 public class Venue extends Entitys implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,6 +36,11 @@ public class Venue extends Entitys implements Serializable {
     @Column(nullable = false)
     private String address;
     private Date createDate;
+    private String picture;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "tv_venue_sport", joinColumns = @JoinColumn(name = "venue_id"), inverseJoinColumns = @JoinColumn(name = "sport_id"))
+    @JsonManagedReference
+    private List<Sport> sports = new ArrayList<>();
 
     public Venue() { }
 
@@ -64,6 +72,7 @@ public class Venue extends Entitys implements Serializable {
         return district;
     }
 
+    @JsonBackReference
     public void setDistrict(District district) {
         this.district = district;
     }
@@ -82,5 +91,22 @@ public class Venue extends Entitys implements Serializable {
 
     public void setCreateDate(Date createDate) {
         this.createDate = createDate;
+    }
+
+    public String getPicture() {
+        return picture;
+    }
+
+    public void setPicture(String picture) {
+        this.picture = picture;
+    }
+
+    public List<Sport> getSports() {
+        return sports;
+    }
+
+    @JsonBackReference
+    public void setSports(List<Sport> sports) {
+        this.sports = sports;
     }
 }

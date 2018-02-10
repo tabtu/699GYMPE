@@ -1,5 +1,8 @@
+699 Course<br />
+data service for PE mobile application<br />
+
 Technology: <br />
-Java 8, Spring 4.3.11(MVC Version), OpenCV 3.3, Spring Boot 1.5.8, MySql 5.7, Connector 6.0.6, Jpa, Thymeleaf, Spring Security, Redis;
+Java 8, Spring Boot 1.5.9, MySql 5.7;
 
 BPTZZ <br />
 <a href="https://bluemix.net/deploy?repository=https://github.com/tabtu/699GYMPE&branch=master"><img src="https://bluemix.net/deploy/button_x2.png" alt="Deploy to Bluemix"></a>

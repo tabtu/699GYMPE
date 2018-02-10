@@ -1,5 +1,7 @@
 package uow.csse.tv.gympe.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -13,30 +15,33 @@ import java.util.List;
  *
  * @author 	Tab Tu
  * @date	2018-01-30
- * @update  Tab Tu on Feb.09 2018
+ * @update  Tab Tu on Feb.10 2018
  * @since	1.0
  *
  */
 
 @Entity(name = "Athlete")
 @Table(name = "tv_athlete")
+@JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
 public class Athlete extends Entitys implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int athlete_id;
-    private short height;
-    private short weight;
-    private short focusLevel;
-    private short teamSpirit;
-    private short psychological;
-    private short technical;
-    private short communication;
-    private short physical;
+    private boolean gender;
+    private int height;
+    private int weight;
+    private int focusLevel;
+    private int teamSpirit;
+    private int psychological;
+    private int technical;
+    private int communication;
+    private int physical;
     //private String qualification;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tv_athlete_club", joinColumns = @JoinColumn(name = "athlete_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
-    private List<Club> club = new ArrayList<>();
+    @JsonManagedReference
+    private List<Club> clubs = new ArrayList<>();
 
     public Athlete() {
 
@@ -50,75 +55,84 @@ public class Athlete extends Entitys implements Serializable {
         this.athlete_id = athlete_id;
     }
 
-    public short getHeight() {
+    public boolean getGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
+
+    public int getHeight() {
         return height;
     }
 
-    public void setHeight(short height) {
+    public void setHeight(int height) {
         this.height = height;
     }
 
-    public short getWeight() {
+    public int getWeight() {
         return weight;
     }
 
-    public void setWeight(short weight) {
+    public void setWeight(int weight) {
         this.weight = weight;
     }
 
-    public List<Club> getClub() {
-        return club;
-    }
-
-    public void setClub(List<Club> club) {
-        this.club = club;
-    }
-
-    public short getCommunication() {
+    public int getCommunication() {
         return communication;
     }
 
-    public void setCommunication(short communication) {
+    public void setCommunication(int communication) {
         this.communication = communication;
     }
 
-    public short getFocusLevel() {
+    public int getFocusLevel() {
         return focusLevel;
     }
 
-    public void setFocusLevel(short focusLevel) {
+    public void setFocusLevel(int focusLevel) {
         this.focusLevel = focusLevel;
     }
 
-    public short getPhysical() {
+    public int getPhysical() {
         return physical;
     }
 
-    public void setPhysical(short physical) {
+    public void setPhysical(int physical) {
         this.physical = physical;
     }
 
-    public short getPsychological() {
+    public int getPsychological() {
         return psychological;
     }
 
-    public void setPsychological(short psychological) {
+    public void setPsychological(int psychological) {
         this.psychological = psychological;
     }
 
-    public short getTeamSpirit() {
+    public int getTeamSpirit() {
         return teamSpirit;
     }
 
-    public void setTeamSpirit(short teamSpirit) {
+    public void setTeamSpirit(int teamSpirit) {
         this.teamSpirit = teamSpirit;
     }
 
-    public short getTechnical() {
+    public int getTechnical() {
         return technical;
     }
 
-    public void setTechnical(short technical) {
+    public void setTechnical(int technical) {
         this.technical = technical;
+    }
+
+    public List<Club> getClubs() {
+        return clubs;
+    }
+
+    @JsonBackReference
+    public void setClubs(List<Club> clubs) {
+        this.clubs = clubs;
     }
 }
