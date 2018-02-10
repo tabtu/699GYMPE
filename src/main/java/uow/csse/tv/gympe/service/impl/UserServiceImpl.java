@@ -2,14 +2,8 @@ package uow.csse.tv.gympe.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uow.csse.tv.gympe.model.Club;
-import uow.csse.tv.gympe.model.Sport;
-import uow.csse.tv.gympe.model.User;
-import uow.csse.tv.gympe.model.Venue;
-import uow.csse.tv.gympe.repository.ClubRepo;
-import uow.csse.tv.gympe.repository.SportRepo;
-import uow.csse.tv.gympe.repository.UserRepo;
-import uow.csse.tv.gympe.repository.VenueRepo;
+import uow.csse.tv.gympe.model.*;
+import uow.csse.tv.gympe.repository.*;
 import uow.csse.tv.gympe.service.UserService;
 
 import java.util.List;
@@ -37,6 +31,9 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private CityRepo cityRepo;
 
     @Override
     public List<Sport> findSportAll() {
@@ -72,12 +69,12 @@ public class UserServiceImpl implements UserService {
 //    }
 
     @Override
-    public User findUser(long user_id) {
+    public User findUserByUserId(String user_id) {
         return userRepo.findOne(user_id);
     }
 
     @Override
-    public User findUser(String username) {
+    public User findUserByUserName(String username) {
         return userRepo.findByUsername(username);
     }
 

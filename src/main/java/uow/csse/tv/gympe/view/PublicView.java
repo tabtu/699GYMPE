@@ -47,15 +47,14 @@ public class PublicView {
 
     @RequestMapping(value = "/user{usid}", method = RequestMethod.GET)
     public User getUser(HttpServletRequest request) {
-        String str = request.getParameter("usid");
-        long usid = Long.parseLong(str);
-        return userServ.findUser(usid);
+        String usid = request.getParameter("usid");
+        return userServ.findUserByUserId(usid);
     }
 
     @RequestMapping(value = "/user{usnm}", method = RequestMethod.GET)
     public User getUser0(HttpServletRequest request) {
         String usnm = request.getParameter("usnm");
-        return userServ.findUser(usnm);
+        return userServ.findUserByUserName(usnm);
     }
 
 //    @RequestMapping(value = "/user{type}{exid}", method = RequestMethod.GET)
@@ -87,11 +86,5 @@ public class PublicView {
                      @RequestParam("pwd") String password) {
         User usr = new User(username, password);
         return lgServ.login(usr);
-    }
-
-    @RequestMapping(value = "/test", method = RequestMethod.POST)
-    @ResponseBody
-    public int test(@RequestParam("usr") User user) {
-        return lgServ.login(user);
     }
 }

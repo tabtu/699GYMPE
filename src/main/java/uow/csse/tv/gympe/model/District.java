@@ -6,7 +6,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 
 /**
- * Log Entity
+ * District Entity
  *
  * @author 	Tab Tu
  * @date	2018-01-30
@@ -28,7 +28,7 @@ public class District extends Entitys implements Serializable {
     @JoinColumn(name="district_city")
     @JsonManagedReference
     private City city;
-    private short sort;
+    private int sort;
 
     public District() {
 
@@ -58,11 +58,11 @@ public class District extends Entitys implements Serializable {
         this.city = city;
     }
 
-    public short getSort() {
+    public int getSort() {
         return sort;
     }
 
-    public void setSort(short sort) {
+    public void setSort(int sort) {
         this.sort = sort;
     }
 }

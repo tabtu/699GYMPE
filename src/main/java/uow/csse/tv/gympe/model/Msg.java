@@ -18,8 +18,8 @@ import java.util.Date;
 @Embeddable
 public class Msg implements Serializable {
 
-    private long sender;
-    private long receiver;
+    private String sender;
+    private String receiver;
     private Date sendtime;
     private Date receivetime;
 
@@ -27,26 +27,26 @@ public class Msg implements Serializable {
 
     }
 
-    public Msg(long s, long r, Date st, Date rt) {
+    public Msg(String s, String r, Date st, Date rt) {
         this.sender = s;
         this.receiver = r;
         this.sendtime = st;
         this.receivetime = rt;
     }
 
-    public long getSender() {
+    public String getSender() {
         return sender;
     }
 
-    public void setSender(long sender) {
+    public void setSender(String sender) {
         this.sender = sender;
     }
 
-    public long getReceiver() {
+    public String getReceiver() {
         return receiver;
     }
 
-    public void setReceiver(long receiver) {
+    public void setReceiver(String receiver) {
         this.receiver = receiver;
     }
 

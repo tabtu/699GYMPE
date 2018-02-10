@@ -31,13 +31,15 @@ public class Club extends Entitys implements Serializable {
     @JsonManagedReference
     private District district;
     private String picture;
-    @Column(nullable = false)
     private String address;
     private String tel;
-    private short sort;
+    private int sort;
     private String introduction;
+    @Column(nullable = false)
     private Date createDate;
+    @Column(nullable = false)
     private Date updateDate;
+    @Column(nullable = false)
     private boolean isSchool;
     @ManyToMany(mappedBy = "club", cascade = CascadeType.ALL)
     private List<Coach> coach = new ArrayList<>();
@@ -94,11 +96,11 @@ public class Club extends Entitys implements Serializable {
         this.introduction = introduction;
     }
 
-    public short getSort() {
+    public int getSort() {
         return sort;
     }
 
-    public void setSort(short sort) {
+    public void setSort(int sort) {
         this.sort = sort;
     }
 

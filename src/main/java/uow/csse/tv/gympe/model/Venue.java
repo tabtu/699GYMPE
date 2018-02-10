@@ -18,7 +18,7 @@ import java.util.Date;
  */
 
 @Entity(name = "Venue")
-@Table(name = "tv_venues")
+@Table(name = "tv_venue")
 public class Venue extends Entitys implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -33,6 +33,7 @@ public class Venue extends Entitys implements Serializable {
     @Column(nullable = false)
     private String address;
     private Date createDate;
+
 
     public Venue() { }
 

@@ -8,7 +8,7 @@ import java.util.List;
 
 
 /**
- * Message Repository Interface
+ * Clue Repository Interface
  *
  * @author 	Tab Tu
  * @date	2018-01-30

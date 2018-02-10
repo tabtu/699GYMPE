@@ -22,8 +22,9 @@ public class Referee extends Entitys implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int referee_id;
+    private boolean gender;
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "tv_referee_qualification", joinColumns = @JoinColumn(name = "referee_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
+    @JoinTable(name = "tv_referee_qualification", joinColumns = @JoinColumn(name = "referee_id"), inverseJoinColumns = @JoinColumn(name = "qualification_id"))
     private List<Qualification> qualification;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tv_referee_club", joinColumns = @JoinColumn(name = "referee_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
@@ -39,6 +40,14 @@ public class Referee extends Entitys implements Serializable {
 
     public void setReferee_id(int referee_id) {
         this.referee_id = referee_id;
+    }
+
+    public boolean getGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
     }
 
     public List<Club> getClub() {

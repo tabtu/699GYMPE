@@ -1,5 +1,6 @@
 package uow.csse.tv.gympe.model;
 
+import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
@@ -20,13 +21,13 @@ import java.util.List;
 
 @Entity(name = "User")
 @Table(name = "tv_user")
+@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class User extends Entitys implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long user_id;
-//    @Column(nullable = false, unique = true)
-    @NaturalId
+    @GeneratedValue(generator = "jpa-uuid")
+    private String user_id;
+    @Column(unique = true)
     private String username;
     @Column(nullable = false)
     private String password;
@@ -43,9 +44,9 @@ public class User extends Entitys implements Serializable {
     private Date lastModifyTime;
     private String name;
     private Date birth;
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "tv_user_sport", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "sport_id"))
-    private List<Sport> myfav = new ArrayList<>();
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "tv_user_sport", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "sport_id"))
+//    private List<Sport> myfav = new ArrayList<>();
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="user_athlete")
     private Athlete athlete;
@@ -72,11 +73,11 @@ public class User extends Entitys implements Serializable {
         this.enabled = true;
     }
 
-    public Long getUser_id() {
+    public String getUser_id() {
         return user_id;
     }
 
-    public void setUser_id(Long user_id) {
+    public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
 
@@ -182,13 +183,5 @@ public class User extends Entitys implements Serializable {
 
     public void setReferee(Referee referee) {
         this.referee = referee;
-    }
-
-    public List<Sport> getMyfav() {
-        return myfav;
-    }
-
-    public void setMyfav(List<Sport> myfav) {
-        this.myfav = myfav;
     }
 }

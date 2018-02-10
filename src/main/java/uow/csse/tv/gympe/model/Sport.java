@@ -24,7 +24,7 @@ public class Sport extends Entitys implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private short sport_id;
+    private int sport_id;
     @NaturalId
     private String name;
 
@@ -35,7 +35,7 @@ public class Sport extends Entitys implements Serializable {
     @JoinColumn(name="sport_category")
     @JsonManagedReference
     private Category category;
-    private short sort;
+    private int sort;
 
 //    @ManyToMany(mappedBy = "schools", cascade = CascadeType.ALL)
 //    private List<School> myfav;
@@ -44,8 +44,8 @@ public class Sport extends Entitys implements Serializable {
 
     public Sport(String name) { this.name = name; }
 
-    public short getSport_id() { return sport_id; }
-    public void setSport_id(short id) { this.sport_id = id; }
+    public int getSport_id() { return sport_id; }
+    public void setSport_id(int id) { this.sport_id = id; }
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
@@ -68,11 +68,11 @@ public class Sport extends Entitys implements Serializable {
         this.category = category;
     }
 
-    public short getSort() {
+    public int getSort() {
         return sort;
     }
 
-    public void setSort(short sort) {
+    public void setSort(int sort) {
         this.sort = sort;
     }
 }
