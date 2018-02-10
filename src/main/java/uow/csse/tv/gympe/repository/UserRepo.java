@@ -22,9 +22,13 @@ public interface UserRepo extends JpaRepository<User, String> {
 
     User findByUsername(String username);
 
-    User findByUsernameOrEmail(String email, String username);
+    User findByTelephone(String telephone);
 
     User findByEmail(String email);
+
+    User findByUsernameOrEmail(String email, String username);
+
+    User findByUsernameOrEmailOrTelephone(String username, String email, String telephone);
 
     List<User> findByEnabled(boolean enabled);
 

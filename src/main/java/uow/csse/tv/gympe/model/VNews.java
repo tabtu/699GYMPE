@@ -1,5 +1,6 @@
 package uow.csse.tv.gympe.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -49,6 +50,7 @@ public class VNews extends Entitys implements Serializable {
         return venue;
     }
 
+    @JsonBackReference
     public void setVenue(Venue venue) {
         this.venue = venue;
     }

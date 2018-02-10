@@ -1,5 +1,6 @@
 package uow.csse.tv.gympe.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -41,10 +42,12 @@ public class Club extends Entitys implements Serializable {
     private Date updateDate;
     @Column(nullable = false)
     private boolean isSchool;
-    @ManyToMany(mappedBy = "club", cascade = CascadeType.ALL)
-    private List<Coach> coach = new ArrayList<>();
-    @ManyToMany(mappedBy = "club", cascade = CascadeType.ALL)
-    private List<Referee> referee = new ArrayList<>();
+    @ManyToMany(mappedBy = "clubs", cascade = CascadeType.ALL)
+    private List<Coach> coaches = new ArrayList<>();
+    @ManyToMany(mappedBy = "clubs", cascade = CascadeType.ALL)
+    private List<Referee> referees = new ArrayList<>();
+    @ManyToMany(mappedBy = "clubs", cascade = CascadeType.ALL)
+    private List<Athlete> athletes = new ArrayList<>();
 
     public Club() { }
 
@@ -76,6 +79,7 @@ public class Club extends Entitys implements Serializable {
         return district;
     }
 
+    @JsonBackReference
     public void setDistrict(District district) {
         this.district = district;
     }
@@ -136,19 +140,27 @@ public class Club extends Entitys implements Serializable {
         this.isSchool = isSchool;
     }
 
-    public List<Coach> getCoach() {
-        return coach;
+    public List<Athlete> getAthletes() {
+        return athletes;
     }
 
-    public void setCoach(List<Coach> coach) {
-        this.coach = coach;
+    public void setAthletes(List<Athlete> athletes) {
+        this.athletes = athletes;
     }
 
-    public List<Referee> getReferee() {
-        return referee;
+    public List<Coach> getCoaches() {
+        return coaches;
     }
 
-    public void setReferee(List<Referee> referee) {
-        this.referee = referee;
+    public void setCoaches(List<Coach> coaches) {
+        this.coaches = coaches;
+    }
+
+    public List<Referee> getReferees() {
+        return referees;
+    }
+
+    public void setReferees(List<Referee> referees) {
+        this.referees = referees;
     }
 }

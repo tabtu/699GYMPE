@@ -1,5 +1,9 @@
 package uow.csse.tv.gympe.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -9,20 +13,22 @@ import java.util.Date;
  *
  * @author 	Tab Tu
  * @date	2018-01-30
- * @update  Tab Tu on Jan.30 2018
+ * @update  Tab Tu on Feb.10 2018
  * @since	1.0
  *
  */
 
 @Entity(name = "Log")
 @Table(name = "tv_log")
+@GenericGenerator(name = "jpa-uuid", strategy = "uuid")
 public class Log extends Entitys implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private long logid;
+    @GeneratedValue(generator = "jpa-uuid")
+    private String logid;
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name="lg_user")
+    @JsonManagedReference
     private User lguser;
     @Column(nullable = false)
     private Date lgtime;
@@ -39,11 +45,11 @@ public class Log extends Entitys implements Serializable {
         this.operation = op;
     }
 
-    public long getLogid() {
+    public String getLogid() {
         return logid;
     }
 
-    public void setLogid(long logid) {
+    public void setLogid(String logid) {
         this.logid = logid;
     }
 
@@ -51,6 +57,7 @@ public class Log extends Entitys implements Serializable {
         return lguser;
     }
 
+    @JsonBackReference
     public void setLguser(User lguser) {
         this.lguser = lguser;
     }

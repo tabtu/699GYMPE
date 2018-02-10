@@ -44,7 +44,6 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private VenueRepo venueRepo;
 
-
     @Override
     public void saveCategory(Category category) {
         categoryRepo.save(category);

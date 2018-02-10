@@ -1,5 +1,6 @@
 package uow.csse.tv.gympe.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -13,13 +14,14 @@ import java.util.List;
  *
  * @author 	Tab Tu
  * @date	2018-01-30
- * @update  Tab Tu on Feb.09 2018
+ * @update  Tab Tu on Feb.10 2018
  * @since	1.0
  *
  */
 
 @Entity(name = "Athlete")
 @Table(name = "tv_athlete")
+@JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
 public class Athlete extends Entitys implements Serializable {
 
     @Id
@@ -37,7 +39,8 @@ public class Athlete extends Entitys implements Serializable {
     //private String qualification;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tv_athlete_club", joinColumns = @JoinColumn(name = "athlete_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
-    private List<Club> club = new ArrayList<>();
+    @JsonManagedReference
+    private List<Club> clubs = new ArrayList<>();
 
     public Athlete() {
 
@@ -73,14 +76,6 @@ public class Athlete extends Entitys implements Serializable {
 
     public void setWeight(int weight) {
         this.weight = weight;
-    }
-
-    public List<Club> getClub() {
-        return club;
-    }
-
-    public void setClub(List<Club> club) {
-        this.club = club;
     }
 
     public int getCommunication() {
@@ -129,5 +124,13 @@ public class Athlete extends Entitys implements Serializable {
 
     public void setTechnical(int technical) {
         this.technical = technical;
+    }
+
+    public List<Club> getClubs() {
+        return clubs;
+    }
+
+    public void setClubs(List<Club> clubs) {
+        this.clubs = clubs;
     }
 }

@@ -55,6 +55,11 @@ public class UserServiceImpl implements UserService {
         return venueRepo.findAll();
     }
 
+    @Override
+    public List<User> findUserAll() {
+        return userRepo.findByEnabled(true);
+    }
+
 //    @Override
 //    public List<User> findUserList(int type) {
 //        if (type == 0) {

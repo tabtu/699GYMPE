@@ -25,6 +25,8 @@ public interface UserService {
 
     List<Venue> findVenueAll();
 
+    List<User> findUserAll();
+
 //    List<User> findUserList(int type);
 
     User findUserByUserId(String user_id);

@@ -1,5 +1,6 @@
 package uow.csse.tv.gympe.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -54,6 +55,7 @@ public class District extends Entitys implements Serializable {
         return city;
     }
 
+    @JsonBackReference
     public void setCity(City city) {
         this.city = city;
     }

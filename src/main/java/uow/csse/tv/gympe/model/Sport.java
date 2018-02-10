@@ -1,10 +1,12 @@
 package uow.csse.tv.gympe.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -36,6 +38,8 @@ public class Sport extends Entitys implements Serializable {
     @JsonManagedReference
     private Category category;
     private int sort;
+    @ManyToMany(mappedBy = "sports", cascade = CascadeType.ALL)
+    private List<Venue> venues = new ArrayList<>();
 
 //    @ManyToMany(mappedBy = "schools", cascade = CascadeType.ALL)
 //    private List<School> myfav;
@@ -58,12 +62,14 @@ public class Sport extends Entitys implements Serializable {
     }
 
     public String getTablename() { return tablename; }
+
     public void setTablename(String tablename) { this.tablename = tablename; }
 
     public Category getCategory() {
         return category;
     }
 
+    @JsonBackReference
     public void setCategory(Category category) {
         this.category = category;
     }
@@ -74,5 +80,13 @@ public class Sport extends Entitys implements Serializable {
 
     public void setSort(int sort) {
         this.sort = sort;
+    }
+
+    public List<Venue> getVenues() {
+        return venues;
+    }
+
+    public void setVenues(List<Venue> venues) {
+        this.venues = venues;
     }
 }

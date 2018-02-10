@@ -1,5 +1,7 @@
 package uow.csse.tv.gympe.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.NaturalId;
 
@@ -29,6 +31,8 @@ public class User extends Entitys implements Serializable {
     private String user_id;
     @Column(unique = true)
     private String username;
+    @Column(unique = true)
+    private String telephone;
     @Column(nullable = false)
     private String password;
     @Column(unique = true)
@@ -87,6 +91,14 @@ public class User extends Entitys implements Serializable {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     public String getPassword() {

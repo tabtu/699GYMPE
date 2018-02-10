@@ -1,5 +1,8 @@
 package uow.csse.tv.gympe.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -17,6 +20,7 @@ import java.util.List;
 
 @Entity(name = "Coach")
 @Table(name = "tv_coach")
+@JsonIgnoreProperties({"handler", "hibernateLazyInitializer"})
 public class Coach extends Entitys implements Serializable {
 
     @Id
@@ -25,7 +29,8 @@ public class Coach extends Entitys implements Serializable {
     private boolean gender;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tv_coach_club", joinColumns = @JoinColumn(name = "coach_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
-    private List<Club> club = new ArrayList<>();
+    @JsonManagedReference
+    private List<Club> clubs = new ArrayList<>();
 
     public Coach() {
 
@@ -47,11 +52,11 @@ public class Coach extends Entitys implements Serializable {
         this.gender = gender;
     }
 
-    public List<Club> getClub() {
-        return club;
+    public List<Club> getClubs() {
+        return clubs;
     }
 
-    public void setClub(List<Club> club) {
-        this.club = club;
+    public void setClubs(List<Club> clubs) {
+        this.clubs = clubs;
     }
 }
