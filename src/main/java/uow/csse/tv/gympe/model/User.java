@@ -28,7 +28,7 @@ public class User extends Entitys implements Serializable {
 
     @Id
     @GeneratedValue(generator = "jpa-uuid")
-    private String user_id;
+    private String id;
     @Column(unique = true)
     private String username;
     @Column(unique = true)
@@ -39,15 +39,15 @@ public class User extends Entitys implements Serializable {
     private String email;
     @Column(nullable = false)
     private boolean enabled;
-    private String profilePicture;
-    @Column(length = 65535,columnDefinition="Text")
+    private String picture;
     private String introduction;
     @Column(nullable = false)
-    private Date createTime;
+    private Date createtime;
     @Column(nullable = false)
-    private Date lastModifyTime;
+    private Date updatetime;
     private String name;
     private Date birth;
+    private boolean gender;
 //    @ManyToMany(cascade = CascadeType.ALL)
 //    @JoinTable(name = "tv_user_sport", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "sport_id"))
 //    private List<Sport> myfav = new ArrayList<>();
@@ -77,12 +77,12 @@ public class User extends Entitys implements Serializable {
         this.enabled = true;
     }
 
-    public String getUser_id() {
-        return user_id;
+    public String getId() {
+        return id;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUsername() {
@@ -125,12 +125,12 @@ public class User extends Entitys implements Serializable {
         this.enabled = enabled;
     }
 
-    public String getProfilePicture() {
-        return profilePicture;
+    public String getPicture() {
+        return picture;
     }
 
-    public void setProfilePicture(String profilePicture) {
-        this.profilePicture = profilePicture;
+    public void setPicture(String picture) {
+        this.picture = picture;
     }
 
     public String getIntroduction() {
@@ -141,20 +141,20 @@ public class User extends Entitys implements Serializable {
         this.introduction = introduction;
     }
 
-    public Date getCreateTime() {
-        return createTime;
+    public Date getCreatetime() {
+        return createtime;
     }
 
-    public void setCreateTime(Date createTime) {
-        this.createTime = createTime;
+    public void setCreatetime(Date createtime) {
+        this.createtime = createtime;
     }
 
-    public Date getLastModifyTime() {
-        return lastModifyTime;
+    public Date getUpdatetime() {
+        return updatetime;
     }
 
-    public void setLastModifyTime(Date lastModifyTime) {
-        this.lastModifyTime = lastModifyTime;
+    public void setUpdatetime(Date updatetime) {
+        this.updatetime = updatetime;
     }
 
     public String getName() {
@@ -196,4 +196,13 @@ public class User extends Entitys implements Serializable {
     public void setReferee(Referee referee) {
         this.referee = referee;
     }
+
+    public boolean getGender() {
+        return gender;
+    }
+
+    public void setGender(boolean gender) {
+        this.gender = gender;
+    }
+
 }

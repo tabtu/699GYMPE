@@ -3,9 +3,12 @@ package uow.csse.tv.gympe.service;
 import uow.csse.tv.gympe.model.Category;
 import uow.csse.tv.gympe.model.City;
 import uow.csse.tv.gympe.model.District;
+import uow.csse.tv.gympe.model.Sport;
+
+import java.util.List;
 
 /**
- * Login Service Implement
+ * System Service Implement
  *
  * @author 	Tab Tu
  * @date	2018-01-30
@@ -14,7 +17,9 @@ import uow.csse.tv.gympe.model.District;
  *
  */
 
-public interface SystService {
+public interface SystemService {
+    List<Sport> getSportList();
+
     City findCity(int city_id);
 
     Category findCategory(int category_id);

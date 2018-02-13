@@ -1,7 +1,5 @@
 package uow.csse.tv.gympe.model;
 
-import org.hibernate.annotations.NaturalId;
-
 import javax.persistence.*;
 import java.io.Serializable;
 
@@ -21,7 +19,7 @@ public class City extends Entitys implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int city_id;
+    private int id;
     @Column(nullable = false)
     private String name;
     private int sort;
@@ -30,16 +28,16 @@ public class City extends Entitys implements Serializable {
 
     }
 
-    public City(int city_id) {
-        this.city_id = city_id;
+    public int getId() {
+        return id;
     }
 
-    public int getCity_id() {
-        return city_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setCity_id(int city_id) {
-        this.city_id = city_id;
+        this.id = city_id;
     }
 
     public String getName() {

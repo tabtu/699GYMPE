@@ -41,6 +41,12 @@ public class Const {
 
     public static int COOKIE_TIMEOUT = 30*24*60*60;
 
+    public static int PAGE_SIZE_FIVE = 5;
+
+    public static int PAGE_SIZE_TEN = 10;
+
+    public static int PAGE_SIZE_TWENTY = 20;
+
     @Autowired(required = true)
     public void setBasePath(@Value("${tv.base.path}")String basePath) { Const.BASE_PATH = basePath; }
 

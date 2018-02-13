@@ -20,23 +20,23 @@ import java.util.List;
 @Repository
 public interface UserRepo extends JpaRepository<User, String> {
 
-    User findByUsername(String username);
+    User findUserByUsername(String username);
 
-    User findByTelephone(String telephone);
+    User findUserByTelephone(String telephone);
 
-    User findByEmail(String email);
+    User findUserByEmail(String email);
 
-    User findByUsernameOrEmail(String email, String username);
+    User findUserByUsernameOrEmail(String email, String username);
 
-    User findByUsernameOrEmailOrTelephone(String username, String email, String telephone);
+    User findUserByUsernameOrEmailOrTelephone(String username, String email, String telephone);
 
-    List<User> findByEnabled(boolean enabled);
+    List<User> findUsersByEnabled(boolean enabled);
 
-    List<User> findUserByAthleteNotNull();
+    List<User> findUsersByAthleteNotNull();
 
-    List<User> findUserByCoachNotNull();
+    List<User> findUsersByCoachNotNull();
 
-    List<User> findUserByRefereeNotNull();
+    List<User> findUsersByRefereeNotNull();
 
 //    User findUserByAthlete_Athlete_id(int athlete_id);
 //

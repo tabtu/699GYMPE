@@ -6,6 +6,7 @@ import uow.csse.tv.gympe.model.*;
 import uow.csse.tv.gympe.repository.*;
 import uow.csse.tv.gympe.service.UserService;
 
+import javax.xml.bind.annotation.XmlEnumValue;
 import java.util.List;
 
 /**
@@ -33,68 +34,37 @@ public class UserServiceImpl implements UserService {
     private UserRepo userRepo;
 
     @Autowired
+    private VnewsRepo vnewsRepo;
+
+    @Autowired
     private CityRepo cityRepo;
 
+    @Autowired
+    private AthleteRepo athleteRepo;
+
+    @Autowired
+    private CoachRepo coachRepo;
+
+    @Autowired
+    private RefereeRepo refereeRepo;
+
     @Override
-    public List<Sport> findSportAll() {
-        return sportRepo.findAll();
+    public void saveVNews(VNews vnews) {
+        vnewsRepo.save(vnews);
     }
 
     @Override
-    public List<Club> findSchoolAll() {
-        return clubRepo.findClubByIsSchoolOrderBySort(true);
+    public void saveAthlete(Athlete athlete) {
+        athleteRepo.save(athlete);
     }
 
     @Override
-    public List<Club> findClubAll() {
-        return clubRepo.findClubByIsSchoolOrderBySort(false);
+    public void saveCoach(Coach coach) {
+        coachRepo.save(coach);
     }
 
     @Override
-    public List<Venue> findVenueAll() {
-        return venueRepo.findAll();
+    public void saveReferee(Referee referee) {
+        refereeRepo.save(referee);
     }
-
-    @Override
-    public List<User> findUserAll() {
-        return userRepo.findByEnabled(true);
-    }
-
-//    @Override
-//    public List<User> findUserList(int type) {
-//        if (type == 0) {
-//            return userRepo.findUserByAthleteNotNull();
-//        } else if (type == 1) {
-//            return userRepo.findUserByCoachNotNull();
-//        } else if (type == 2) {
-//            return userRepo.findUserByRefereeNotNull();
-//        } else {
-//            return userRepo.findAll();
-//        }
-//    }
-
-    @Override
-    public User findUserByUserId(String user_id) {
-        return userRepo.findOne(user_id);
-    }
-
-    @Override
-    public User findUserByUserName(String username) {
-        return userRepo.findByUsername(username);
-    }
-
-//    @Override
-//    public User findUser(int type, int ex_id) {
-//        if (type == 0) {
-//            return userRepo.findUserByAthlete_Athlete_id(ex_id);
-//        } else if (type == 1) {
-//            return userRepo.findUserByCoach_Coach_id(ex_id);
-//        } else if (type == 2) {
-//            return userRepo.findUserByReferee_Referee_id(ex_id);
-//        } else {
-//            return null;
-//        }
-//    }
-
-
 }

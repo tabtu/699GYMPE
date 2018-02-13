@@ -2,6 +2,7 @@ package uow.csse.tv.gympe.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.hibernate.validator.constraints.LuhnCheck;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -22,7 +23,7 @@ public class District extends Entitys implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int district_id;
+    private int id;
     @Column(nullable = false)
     private String name;
     @ManyToOne(cascade = CascadeType.ALL)
@@ -35,12 +36,12 @@ public class District extends Entitys implements Serializable {
 
     }
 
-    public int getDistrict_id() {
-        return district_id;
+    public int getId() {
+        return id;
     }
 
-    public void setDistrict_id(int district_id) {
-        this.district_id = district_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

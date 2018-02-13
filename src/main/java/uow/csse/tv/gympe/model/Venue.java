@@ -25,7 +25,7 @@ import java.util.List;
 public class Venue extends Entitys implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int venue_id;
+    private int id;
     @Column(nullable = false)
     private String name;
     private String tel;
@@ -35,8 +35,10 @@ public class Venue extends Entitys implements Serializable {
     private District district;
     @Column(nullable = false)
     private String address;
-    private Date createDate;
+    private Date createdate;
     private String picture;
+    private int rate;
+    private int sort;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tv_venue_sport", joinColumns = @JoinColumn(name = "venue_id"), inverseJoinColumns = @JoinColumn(name = "sport_id"))
     @JsonManagedReference
@@ -44,12 +46,12 @@ public class Venue extends Entitys implements Serializable {
 
     public Venue() { }
 
-    public int getVenue_id() {
-        return venue_id;
+    public int getId() {
+        return id;
     }
 
-    public void setVenue_id(int venue_id) {
-        this.venue_id = venue_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -85,12 +87,12 @@ public class Venue extends Entitys implements Serializable {
         this.address = address;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public Date getCreatedate() {
+        return createdate;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
     }
 
     public String getPicture() {
@@ -99,6 +101,22 @@ public class Venue extends Entitys implements Serializable {
 
     public void setPicture(String picture) {
         this.picture = picture;
+    }
+
+    public int getRate() {
+        return rate;
+    }
+
+    public void setRate(int rate) {
+        this.rate = rate;
+    }
+
+    public int getSort() {
+        return sort;
+    }
+
+    public void setSort(int sort) {
+        this.sort = sort;
     }
 
     public List<Sport> getSports() {

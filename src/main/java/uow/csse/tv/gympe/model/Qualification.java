@@ -21,7 +21,7 @@ import java.util.Date;
 public class Qualification extends Entitys implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int qualification_id;
+    private int id;
     private String name;
     private String picture;
 
@@ -29,12 +29,12 @@ public class Qualification extends Entitys implements Serializable {
 
     }
 
-    public int getQualification_id() {
-        return qualification_id;
+    public int getId() {
+        return id;
     }
 
-    public void setQualification_id(int qualification_id) {
-        this.qualification_id = qualification_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

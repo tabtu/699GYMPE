@@ -1,8 +1,15 @@
 package uow.csse.tv.gympe.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import uow.csse.tv.gympe.model.VNews;
+import uow.csse.tv.gympe.model.Venue;
+
+import java.util.Date;
+import java.util.List;
 
 /**
  * Vnews Repository Interface
@@ -17,4 +24,5 @@ import uow.csse.tv.gympe.model.VNews;
 @Repository
 public interface VnewsRepo extends JpaRepository<VNews, Long> {
 
+    Page<VNews> findVNewsByVenue_Id(int id, Pageable pageable);
 }

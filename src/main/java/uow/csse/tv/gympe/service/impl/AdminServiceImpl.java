@@ -1,13 +1,9 @@
 package uow.csse.tv.gympe.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uow.csse.tv.gympe.config.Const;
 import uow.csse.tv.gympe.model.*;
 import uow.csse.tv.gympe.repository.*;
 import uow.csse.tv.gympe.service.AdminService;
-import uow.csse.tv.gympe.service.LoginService;
-import uow.csse.tv.gympe.service.SystService;
-import uow.csse.tv.gympe.utils.MD5Util;
 
 import java.util.Date;
 
@@ -16,7 +12,7 @@ import java.util.Date;
  *
  * @author 	Tab Tu
  * @date	2018-01-30
- * @update  Tab Tu on Feb.03 2018
+ * @update  Tab Tu on Feb.11 2018
  * @since	1.0
  *
  */
@@ -44,6 +40,12 @@ public class AdminServiceImpl implements AdminService {
     @Autowired
     private VenueRepo venueRepo;
 
+    @Autowired
+    private QualificationRepo qualificationRepo;
+
+    @Autowired
+    private NewsRepo newsRepo;
+
     @Override
     public void saveCategory(Category category) {
         categoryRepo.save(category);
@@ -65,19 +67,24 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public void saveUser(User user) {
-        userRepo.save(user);
-    }
-
-    @Override
     public void saveClub(Club club) {
-        club.setUpdateDate(new Date());
+        club.setUpdatedate(new Date());
         clubRepo.save(club);
     }
 
     @Override
     public void saveVenue(Venue venue) {
         venueRepo.save(venue);
+    }
+
+    @Override
+    public void saveQualification(Qualification qualification) {
+        qualificationRepo.save(qualification);
+    }
+
+    @Override
+    public void saveNews(News news) {
+        newsRepo.save(news);
     }
 
 }

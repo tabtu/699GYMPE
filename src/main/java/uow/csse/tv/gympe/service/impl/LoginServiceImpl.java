@@ -6,7 +6,6 @@ import uow.csse.tv.gympe.config.Const;
 import uow.csse.tv.gympe.model.User;
 import uow.csse.tv.gympe.repository.UserRepo;
 import uow.csse.tv.gympe.service.LoginService;
-import uow.csse.tv.gympe.service.SystService;
 import uow.csse.tv.gympe.utils.MD5Util;
 
 import java.util.Date;
@@ -28,18 +27,18 @@ public class LoginServiceImpl implements LoginService {
 
     @Override
     public User findUserByUsername(String username) {
-        return userRepo.findByUsername(username);
+        return userRepo.findUserByUsername(username);
     }
 
     @Override
-    public User findUserByUsernameOrEmail(String email, String username) { return userRepo.findByUsernameOrEmail(email, username); }
+    public User findUserByUsernameOrEmail(String email, String username) { return userRepo.findUserByUsernameOrEmail(email, username); }
 
     @Override
-    public User findUserByEmail(String email) { return userRepo.findByEmail(email); }
+    public User findUserByEmail(String email) { return userRepo.findUserByEmail(email); }
 
     @Override
     public int login(User user) {
-        User tmp = userRepo.findByUsername(user.getUsername());
+        User tmp = userRepo.findUserByUsername(user.getUsername());
         String md5pwd = MD5Util.encrypt(user.getPassword() + Const.PASSWORD_KEY);
         if (tmp != null) {
             System.out.println(tmp.getPassword());
@@ -58,9 +57,9 @@ public class LoginServiceImpl implements LoginService {
     public boolean register(User user) {
         try {
             user.setPassword(MD5Util.encrypt(user.getPassword() + Const.PASSWORD_KEY));
-            user.setCreateTime(new Date());
+            user.setCreatetime(new Date());
             user.setEnabled(true);
-            user.setLastModifyTime(new Date());
+            user.setUpdatetime(new Date());
             User tmp = userRepo.save(user);
             if (tmp != null) {
                 return true;

@@ -22,7 +22,7 @@ import java.util.Date;
 public class VNews extends Entitys implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long vnews_id;
+    private long id;
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="vnews_venues")
     @JsonManagedReference
@@ -32,18 +32,17 @@ public class VNews extends Entitys implements Serializable {
     @Column(length = 65535,columnDefinition="Text")
     private String content;
     @Column(nullable = false)
+    private Date updatedate;
     private String picture;
-    @Column(nullable = false)
-    private Date updateDate;
 
     public VNews() { }
 
-    public long getVnews_id() {
-        return vnews_id;
+    public long getId() {
+        return id;
     }
 
-    public void setVnews_id(long vnews_id) {
-        this.vnews_id = vnews_id;
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Venue getVenue() {
@@ -78,11 +77,11 @@ public class VNews extends Entitys implements Serializable {
         this.picture = picture;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
+    public Date getUpdatedate() {
+        return updatedate;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setUpdatedate(Date updatedate) {
+        this.updatedate = updatedate;
     }
 }

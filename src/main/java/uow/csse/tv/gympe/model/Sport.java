@@ -26,7 +26,7 @@ public class Sport extends Entitys implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int sport_id;
+    private int id;
     @NaturalId
     private String name;
 
@@ -41,16 +41,20 @@ public class Sport extends Entitys implements Serializable {
     @ManyToMany(mappedBy = "sports", cascade = CascadeType.ALL)
     private List<Venue> venues = new ArrayList<>();
 
-//    @ManyToMany(mappedBy = "schools", cascade = CascadeType.ALL)
-//    private List<School> myfav;
-
     public Sport() { }
 
     public Sport(String name) { this.name = name; }
 
-    public int getSport_id() { return sport_id; }
-    public void setSport_id(int id) { this.sport_id = id; }
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getName() { return name; }
+
     public void setName(String name) { this.name = name; }
 
     public String getCname() {
