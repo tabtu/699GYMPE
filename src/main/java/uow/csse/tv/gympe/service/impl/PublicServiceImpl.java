@@ -33,9 +33,6 @@ public class PublicServiceImpl implements PublicService {
     private VenueRepo venueRepo;
 
     @Autowired
-    private UserRepo userRepo;
-
-    @Autowired
     private VnewsRepo vnewsRepo;
 
     @Override
@@ -105,40 +102,24 @@ public class PublicServiceImpl implements PublicService {
     }
 
     @Override
-    public List<User> findUserAll() {
-        return userRepo.findUsersByEnabled(true);
-    }
-
-    @Override
     public List<VNews> getVNewsListByVenueId(int venueid, int page) {
         Pageable pageable = new PageRequest(page, Const.PAGE_SIZE_FIVE);
         Page<VNews> tmp = vnewsRepo.findVNewsByVenue_Id(venueid, pageable);
         return tmp.getContent();
     }
-
-    @Override
-    public List<User> findUserByType(int type) {
-        if (type == 0) {
-            return userRepo.findUsersByAthleteNotNull();
-        } else if (type == 1) {
-            return userRepo.findUsersByCoachNotNull();
-        } else if (type == 2) {
-            return userRepo.findUsersByRefereeNotNull();
-        } else {
-            return userRepo.findAll();
-        }
-    }
-
-    @Override
-    public User findUserByUserId(String user_id) {
-        return userRepo.findOne(user_id);
-    }
-
-    @Override
-    public User findUserByUserName(String username) {
-        return userRepo.findUserByUsername(username);
-    }
-
+//
+//    @Override
+//    public List<User> findUserByType(int type) {
+//        if (type == 0) {
+//            return userRepo.findUsersByAthleteNotNull();
+//        } else if (type == 1) {
+//            return userRepo.findUsersByCoachNotNull();
+//        } else if (type == 2) {
+//            return userRepo.findUsersByRefereeNotNull();
+//        } else {
+//            return userRepo.findAll();
+//        }
+//    }
 //    @Override
 //    public User findUser(int type, int ex_id) {
 //        if (type == 0) {

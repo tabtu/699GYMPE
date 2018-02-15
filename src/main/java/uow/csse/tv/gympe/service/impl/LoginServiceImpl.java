@@ -26,35 +26,60 @@ public class LoginServiceImpl implements LoginService {
     private UserRepo userRepo;
 
     @Override
-    public User findUserByUsername(String username) {
-        return userRepo.findUserByUsername(username);
+    public User getUser(String userid) {
+        return userRepo.findOne(userid);
     }
 
     @Override
-    public User findUserByUsernameOrEmail(String email, String username) { return userRepo.findUserByUsernameOrEmail(email, username); }
+    public User getUser(String username, String email, String telephone) {
+        if (username == null) {
+            username = "";
+        }
+        if (email == null) {
+            email = "";
+        }
+        if (telephone == null) {
+            telephone = "";
+        }
+        User tmp = userRepo.findUserByUsernameOrEmailOrTelephone(username, email, telephone);
+        if (tmp != null) {
+            tmp.setPassword(null);
+        }
+        return tmp;
+    }
 
     @Override
-    public User findUserByEmail(String email) { return userRepo.findUserByEmail(email); }
-
-    @Override
-    public int login(User user) {
-        User tmp = userRepo.findUserByUsername(user.getUsername());
+    public User login(User user, int type) {
+        User tmp;
+        if (type == 0) {
+            tmp = userRepo.findUserByIdAndEnabled(user.getId(), true);
+        } else if (type == 1) {
+            tmp = userRepo.findUserByUsernameAndEnabled(user.getUsername(), true);
+        } else if (type == 2) {
+            tmp = userRepo.findUserByEmailAndEnabled(user.getEmail(), true);
+        } else if (type == 3) {
+            tmp = null;
+        } else if (type == 4) {
+            tmp = userRepo.findUserByTelephoneAndEnabled(user.getTelephone(), true);
+        } else {
+            return null;
+        }
         String md5pwd = MD5Util.encrypt(user.getPassword() + Const.PASSWORD_KEY);
         if (tmp != null) {
-            System.out.println(tmp.getPassword());
-            System.out.println(md5pwd);
             if (tmp.getPassword().equals(md5pwd)) {
-                return 1;
+                tmp.setPassword(tmp.getId());
+                return tmp;
             } else {
-                return -1;
+                tmp.setPassword("");
+                return tmp;
             }
         } else {
-            return -2;
+            return null;
         }
     }
 
     @Override
-    public boolean register(User user) {
+    public User register(User user) {
         try {
             user.setPassword(MD5Util.encrypt(user.getPassword() + Const.PASSWORD_KEY));
             user.setCreatetime(new Date());
@@ -62,12 +87,13 @@ public class LoginServiceImpl implements LoginService {
             user.setUpdatetime(new Date());
             User tmp = userRepo.save(user);
             if (tmp != null) {
-                return true;
+                tmp.setPassword(tmp.getId());
+                return tmp;
             } else {
-                return false;
+                return null;
             }
         } catch(Exception e) {
-            return false;
+            return null;
         }
     }
 }

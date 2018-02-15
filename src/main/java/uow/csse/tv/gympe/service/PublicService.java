@@ -44,12 +44,4 @@ public interface PublicService {
 
     List<VNews> getVNewsListByVenueId(int venueid, int page);
 
-    User findUserByUserId(String user_id);
-
-    User findUserByUserName(String username);
-
-    List<User> findUserAll();
-
-    List<User> findUserByType(int type);
-
 }

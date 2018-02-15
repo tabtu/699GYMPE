@@ -20,13 +20,13 @@ import java.util.List;
 @Repository
 public interface UserRepo extends JpaRepository<User, String> {
 
-    User findUserByUsername(String username);
+    User findUserByIdAndEnabled(String id, boolean enabled);
 
-    User findUserByTelephone(String telephone);
+    User findUserByUsernameAndEnabled(String username, boolean enabled);
 
-    User findUserByEmail(String email);
+    User findUserByEmailAndEnabled(String email, boolean enabled);
 
-    User findUserByUsernameOrEmail(String email, String username);
+    User findUserByTelephoneAndEnabled(String telephone, boolean enabled);
 
     User findUserByUsernameOrEmailOrTelephone(String username, String email, String telephone);
 
@@ -38,11 +38,11 @@ public interface UserRepo extends JpaRepository<User, String> {
 
     List<User> findUsersByRefereeNotNull();
 
-//    User findUserByAthlete_Athlete_id(int athlete_id);
-//
-//    User findUserByCoach_Coach_id(int coach_id);
-//
-//    User findUserByReferee_Referee_id(int referee_id);
+    User findUserByAthlete_Id(int id);
+
+    User findUserByCoach_Id(int id);
+
+    User findUserByReferee_Id(int id);
 
 //    @Transactional
 //    @Modifying

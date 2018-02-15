@@ -17,9 +17,6 @@ import java.util.List;
 public class PublicView {
 
     @Autowired
-    private LoginService lgServ;
-
-    @Autowired
     private PublicService pubService;
 
     @Autowired
@@ -53,52 +50,5 @@ public class PublicView {
         String id = request.getParameter("id");
         String page = request.getParameter("page");
         return pubService.getVNewsListByVenueId(Integer.parseInt(id), Integer.parseInt(page));
-    }
-
-    @GetMapping(value = "/user")
-    public List<User> getUserlist() {
-        return pubService.findUserAll();
-    }
-
-    @RequestMapping(value = "/usid{id}", method = RequestMethod.GET)
-    public User getUser(HttpServletRequest request) {
-        String tmp = request.getParameter("id");
-        return pubService.findUserByUserId(tmp);
-    }
-
-    @RequestMapping(value = "/usnm{nm}", method = RequestMethod.GET)
-    public User getUser0(HttpServletRequest request) {
-        String tmp = request.getParameter("nm");
-        return pubService.findUserByUserName(tmp);
-    }
-//
-//    @RequestMapping(value = "/vnews{v0}", method = RequestMethod.GET)
-//    public List<VNews> getVnews(HttpServletRequest request) {
-//        String tmp = request.getParameter("v0");
-//        return pubService.findVNewsByVenueId(Integer.parseInt(tmp));
-//    }
-
-    @RequestMapping(value = "/ustp{v0}", method = RequestMethod.GET)
-    public List<User> getUserbyType(HttpServletRequest request) {
-        String tmp = request.getParameter("v0");
-        int type = Integer.parseInt(tmp);
-        return pubService.findUserByType(type);
-    }
-
-//    @RequestMapping(value = "/user{type}{exid}", method = RequestMethod.GET)
-//    public User getUser1(HttpServletRequest request) {
-//        String str0 = request.getParameter("type");
-//        String str1 = request.getParameter("exid");
-//        int type = Integer.parseInt(str0);
-//        int exid = Integer.parseInt(str1);
-//        return userServ.fin(type, exid);
-//    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @ResponseBody
-    public int login(@RequestParam("usr") String username,
-                     @RequestParam("pwd") String password) {
-        User usr = new User(username, password);
-        return lgServ.login(usr);
     }
 }
