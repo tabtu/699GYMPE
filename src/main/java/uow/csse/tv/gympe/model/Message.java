@@ -18,7 +18,7 @@ import java.io.Serializable;
 public class Message extends Entitys implements Serializable {
 
     @EmbeddedId
-    private Msg msgid;
+    private Msg id;
     @Column(nullable = false)
     private boolean isread;
     @Column(length = 65535, columnDefinition="Text")
@@ -29,17 +29,17 @@ public class Message extends Entitys implements Serializable {
     }
 
     public Message(Msg msd, String txt) {
-        this.msgid = msd;
+        this.id = msd;
         this.text = txt;
         this.isread = false;
     }
 
-    public Msg getMsgid() {
-        return msgid;
+    public Msg getId() {
+        return id;
     }
 
-    public void setMsgid(Msg msgid) {
-        this.msgid = msgid;
+    public void setId(Msg id) {
+        this.id = id;
     }
 
     public String getText() {

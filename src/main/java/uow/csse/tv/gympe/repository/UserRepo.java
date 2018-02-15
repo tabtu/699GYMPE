@@ -20,29 +20,29 @@ import java.util.List;
 @Repository
 public interface UserRepo extends JpaRepository<User, String> {
 
-    User findByUsername(String username);
+    User findUserByIdAndEnabled(String id, boolean enabled);
 
-    User findByTelephone(String telephone);
+    User findUserByUsernameAndEnabled(String username, boolean enabled);
 
-    User findByEmail(String email);
+    User findUserByEmailAndEnabled(String email, boolean enabled);
 
-    User findByUsernameOrEmail(String email, String username);
+    User findUserByTelephoneAndEnabled(String telephone, boolean enabled);
 
-    User findByUsernameOrEmailOrTelephone(String username, String email, String telephone);
+    User findUserByUsernameOrEmailOrTelephone(String username, String email, String telephone);
 
-    List<User> findByEnabled(boolean enabled);
+    List<User> findUsersByEnabled(boolean enabled);
 
-    List<User> findUserByAthleteNotNull();
+    List<User> findUsersByAthleteNotNull();
 
-    List<User> findUserByCoachNotNull();
+    List<User> findUsersByCoachNotNull();
 
-    List<User> findUserByRefereeNotNull();
+    List<User> findUsersByRefereeNotNull();
 
-//    User findUserByAthlete_Athlete_id(int athlete_id);
-//
-//    User findUserByCoach_Coach_id(int coach_id);
-//
-//    User findUserByReferee_Referee_id(int referee_id);
+    User findUserByAthlete_Id(int id);
+
+    User findUserByCoach_Id(int id);
+
+    User findUserByReferee_Id(int id);
 
 //    @Transactional
 //    @Modifying

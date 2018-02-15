@@ -13,13 +13,18 @@ import uow.csse.tv.gympe.model.User;
  */
 
 public interface LoginService {
-    User findUserByUsername(String username);
 
-    User findUserByEmail(String email);
+    User getUser(String userid);
 
-    User findUserByUsernameOrEmail(String email, String username);
+    User getUser(String username, String email, String telephone);
 
-    int login(User user);
+    /**
+     *
+     * @param user Login information
+     * @param type 0 usid, 1 usnm, 2 usem, 3 uswx, 4 ustl
+     * @return
+     */
+    User login(User user, int type);
 
-    boolean register(User user);
+    User register(User user);
 }

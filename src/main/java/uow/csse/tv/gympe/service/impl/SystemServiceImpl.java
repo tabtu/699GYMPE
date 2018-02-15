@@ -5,10 +5,14 @@ import org.springframework.stereotype.Service;
 import uow.csse.tv.gympe.model.Category;
 import uow.csse.tv.gympe.model.City;
 import uow.csse.tv.gympe.model.District;
+import uow.csse.tv.gympe.model.Sport;
 import uow.csse.tv.gympe.repository.CategoryRepo;
 import uow.csse.tv.gympe.repository.CityRepo;
 import uow.csse.tv.gympe.repository.DistrictRepo;
-import uow.csse.tv.gympe.service.SystService;
+import uow.csse.tv.gympe.repository.SportRepo;
+import uow.csse.tv.gympe.service.SystemService;
+
+import java.util.List;
 
 /**
  * System Service Implement
@@ -21,7 +25,10 @@ import uow.csse.tv.gympe.service.SystService;
  */
 
 @Service
-public class SystServiceImpl implements SystService {
+public class SystemServiceImpl implements SystemService {
+
+    @Autowired
+    private SportRepo sportRepo;
 
     @Autowired
     private CityRepo cityRepo;
@@ -31,6 +38,11 @@ public class SystServiceImpl implements SystService {
 
     @Autowired
     private DistrictRepo districtRepo;
+
+    @Override
+    public List<Sport> getSportList() {
+        return sportRepo.findAllByOrderBySortAsc();
+    }
 
     @Override
     public City findCity(int city_id) {

@@ -26,8 +26,7 @@ public class Coach extends Entitys implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int coach_id;
-    private boolean gender;
+    private int id;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tv_coach_club", joinColumns = @JoinColumn(name = "coach_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
     @JsonManagedReference
@@ -37,20 +36,12 @@ public class Coach extends Entitys implements Serializable {
 
     }
 
-    public int getCoach_id() {
-        return coach_id;
+    public int getId() {
+        return id;
     }
 
-    public void setCoach_id(int coach_id) {
-        this.coach_id = coach_id;
-    }
-
-    public boolean getGender() {
-        return gender;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public List<Club> getClubs() {

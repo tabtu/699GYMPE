@@ -21,7 +21,7 @@ public class Category extends Entitys implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int cate_id;
+    private int id;
     @Column(nullable = false)
     private String name;
     private int sort;
@@ -31,15 +31,15 @@ public class Category extends Entitys implements Serializable {
     }
 
     public Category(int cate_id) {
-        this.cate_id = cate_id;
+        this.id = cate_id;
     }
 
-    public int getCate_id() {
-        return cate_id;
+    public int getId() {
+        return id;
     }
 
-    public void setCate_id(int cate_id) {
-        this.cate_id = cate_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {

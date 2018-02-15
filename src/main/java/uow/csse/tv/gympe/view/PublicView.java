@@ -1,9 +1,12 @@
 package uow.csse.tv.gympe.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 import uow.csse.tv.gympe.model.*;
 import uow.csse.tv.gympe.service.LoginService;
+import uow.csse.tv.gympe.service.PublicService;
+import uow.csse.tv.gympe.service.SystemService;
 import uow.csse.tv.gympe.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,70 +15,40 @@ import java.util.List;
 
 @RestController
 public class PublicView {
-    @Autowired
-    private UserService userServ;
 
     @Autowired
-    private LoginService lgServ;
+    private PublicService pubService;
 
-    @RequestMapping(value = "/sport", method = RequestMethod.GET)
-    public List<Sport> getSportlist(HttpServletRequest request) {
-        return userServ.findSportAll();
+    @Autowired
+    private SystemService sysService;
+
+    @GetMapping(value = "/sport")
+    public List<Sport> getSportList() {
+        return sysService.getSportList();
     }
 
-    @GetMapping(value = "/club")
-    public List<Club> getClublist() {
-        return userServ.findClubAll();
+    @RequestMapping(value = "/club{page}", method = RequestMethod.GET)
+    public List<Club> getClubList(HttpServletRequest request) {
+        String page = request.getParameter("page");
+        return pubService.getClubList(Integer.parseInt(page));
     }
 
-    @GetMapping(value = "/school")
-    public List<Club> getSchoollist() {
-        return userServ.findSchoolAll();
+    @RequestMapping(value = "/school{page}", method = RequestMethod.GET)
+    public List<Club> getSchoolList(HttpServletRequest request) {
+        String page = request.getParameter("page");
+        return pubService.getSchoolList(Integer.parseInt(page));
     }
 
-    @GetMapping(value = "/venue")
-    public List<Venue> getVenuelist() {
-        return userServ.findVenueAll();
+    @RequestMapping(value = "/venue{page}", method = RequestMethod.GET)
+    public List<Venue> getVenuelist(HttpServletRequest request) {
+        String page = request.getParameter("page");
+        return pubService.getVenueList(Integer.parseInt(page));
     }
 
-    @GetMapping(value = "/user")
-    public List<User> getUserlist() {
-        return userServ.findUserAll();
-    }
-
-    @RequestMapping(value = "/user{usid}", method = RequestMethod.GET)
-    public User getUser(HttpServletRequest request) {
-        String usid = request.getParameter("usid");
-        return userServ.findUserByUserId(usid);
-    }
-
-    @RequestMapping(value = "/user{usnm}", method = RequestMethod.GET)
-    public User getUser0(HttpServletRequest request) {
-        String usnm = request.getParameter("usnm");
-        return userServ.findUserByUserName(usnm);
-    }
-
-    //    @RequestMapping(value = "/userlist{type}", method = RequestMethod.GET)
-//    public List<User> getUserlist(HttpServletRequest request) {
-//        String str = request.getParameter("type");
-//        int type = Integer.parseInt(str);
-//        return userServ.findUserList(type);
-//    }
-
-//    @RequestMapping(value = "/user{type}{exid}", method = RequestMethod.GET)
-//    public User getUser1(HttpServletRequest request) {
-//        String str0 = request.getParameter("type");
-//        String str1 = request.getParameter("exid");
-//        int type = Integer.parseInt(str0);
-//        int exid = Integer.parseInt(str1);
-//        return userServ.fin(type, exid);
-//    }
-
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    @ResponseBody
-    public int login(@RequestParam("usr") String username,
-                     @RequestParam("pwd") String password) {
-        User usr = new User(username, password);
-        return lgServ.login(usr);
+    @RequestMapping(value = "/vnews{id}{page}", method = RequestMethod.GET)
+    public List<VNews> getVNewsPages(HttpServletRequest request) {
+        String id = request.getParameter("id");
+        String page = request.getParameter("page");
+        return pubService.getVNewsListByVenueId(Integer.parseInt(id), Integer.parseInt(page));
     }
 }

@@ -2,6 +2,8 @@ package uow.csse.tv.gympe.service;
 
 import uow.csse.tv.gympe.model.*;
 
+import java.sql.Ref;
+
 /**
  * Login Service Implement
  *
@@ -21,11 +23,12 @@ public interface AdminService {
 
     void saveSport(Sport sport);
 
-    void saveUser(User user);
-
     void saveClub(Club club);
 
     void saveVenue(Venue venue);
 
-//    void saveAthlete(Athlete athlete);
+    void saveQualification(Qualification qualification);
+
+    void saveNews(News news);
+
 }

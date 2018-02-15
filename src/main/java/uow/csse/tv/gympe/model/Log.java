@@ -25,7 +25,7 @@ public class Log extends Entitys implements Serializable {
 
     @Id
     @GeneratedValue(generator = "jpa-uuid")
-    private String logid;
+    private String id;
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name="lg_user")
     @JsonManagedReference
@@ -45,12 +45,12 @@ public class Log extends Entitys implements Serializable {
         this.operation = op;
     }
 
-    public String getLogid() {
-        return logid;
+    public String getId() {
+        return id;
     }
 
-    public void setLogid(String logid) {
-        this.logid = logid;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public User getLguser() {

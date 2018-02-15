@@ -24,7 +24,7 @@ import java.util.List;
 public class Club extends Entitys implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int club_id;
+    private int id;
     @Column(nullable = false)
     private String name;
     @ManyToOne(cascade = CascadeType.ALL)
@@ -37,11 +37,11 @@ public class Club extends Entitys implements Serializable {
     private int sort;
     private String introduction;
     @Column(nullable = false)
-    private Date createDate;
+    private Date createdate;
     @Column(nullable = false)
-    private Date updateDate;
+    private Date updatedate;
     @Column(nullable = false)
-    private boolean isSchool;
+    private boolean school;
     @ManyToMany(mappedBy = "clubs", cascade = CascadeType.ALL)
     private List<Coach> coaches = new ArrayList<>();
     @ManyToMany(mappedBy = "clubs", cascade = CascadeType.ALL)
@@ -51,12 +51,12 @@ public class Club extends Entitys implements Serializable {
 
     public Club() { }
 
-    public int getClub_id() {
-        return club_id;
+    public int getId() {
+        return id;
     }
 
-    public void setClub_id(int club_id) {
-        this.club_id = club_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -108,20 +108,20 @@ public class Club extends Entitys implements Serializable {
         this.sort = sort;
     }
 
-    public Date getCreateDate() {
-        return createDate;
+    public Date getCreatedate() {
+        return createdate;
     }
 
-    public void setCreateDate(Date createDate) {
-        this.createDate = createDate;
+    public void setCreatedate(Date createdate) {
+        this.createdate = createdate;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
+    public Date getUpdatedate() {
+        return updatedate;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setUpdatedate(Date updatedate) {
+        this.updatedate = updatedate;
     }
 
     public String getPicture() {
@@ -132,12 +132,12 @@ public class Club extends Entitys implements Serializable {
         this.picture = picture;
     }
 
-    public boolean getIsSchool() {
-        return isSchool;
+    public boolean getSchool() {
+        return school;
     }
 
-    public void setIsSchool(boolean isSchool) {
-        this.isSchool = isSchool;
+    public void setSchool(boolean school) {
+        this.school = school;
     }
 
     public List<Athlete> getAthletes() {

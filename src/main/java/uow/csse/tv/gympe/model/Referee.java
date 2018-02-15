@@ -26,8 +26,7 @@ public class Referee extends Entitys implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int referee_id;
-    private boolean gender;
+    private int id;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tv_referee_qualification", joinColumns = @JoinColumn(name = "referee_id"), inverseJoinColumns = @JoinColumn(name = "qualification_id"))
     @JsonManagedReference
@@ -41,20 +40,12 @@ public class Referee extends Entitys implements Serializable {
 
     }
 
-    public int getReferee_id() {
-        return referee_id;
+    public int getId() {
+        return id;
     }
 
-    public void setReferee_id(int referee_id) {
-        this.referee_id = referee_id;
-    }
-
-    public boolean getGender() {
-        return gender;
-    }
-
-    public void setGender(boolean gender) {
-        this.gender = gender;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public List<Club> getClubs() {

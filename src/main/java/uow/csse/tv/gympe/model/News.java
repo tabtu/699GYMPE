@@ -21,9 +21,9 @@ import java.util.Date;
 public class News extends Entitys implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private long news_id;
+    private long id;
     @Column(nullable = false)
-    private Date updateDate;
+    private Date updatedate;
     @Column(nullable = false)
     private String title;
     @Column(length = 65535,columnDefinition="Text")
@@ -33,20 +33,20 @@ public class News extends Entitys implements Serializable {
 
     }
 
-    public long getNews_id() {
-        return news_id;
+    public long getId() {
+        return id;
     }
 
-    public void setNews_id(long news_id) {
-        this.news_id = news_id;
+    public void setId(long id) {
+        this.id = id;
     }
 
-    public Date getUpdateDate() {
-        return updateDate;
+    public Date getUpdatedate() {
+        return updatedate;
     }
 
-    public void setUpdateDate(Date updateDate) {
-        this.updateDate = updateDate;
+    public void setUpdatedate(Date updatedate) {
+        this.updatedate = updatedate;
     }
 
     public String getTitle() {

@@ -17,21 +17,11 @@ import java.util.List;
  */
 
 public interface UserService {
-    List<Sport> findSportAll();
+    void saveVNews(VNews vnews);
 
-    List<Club> findClubAll();
+    void saveAthlete(Athlete athlete);
 
-    List<Club> findSchoolAll();
+    void saveCoach(Coach coach);
 
-    List<Venue> findVenueAll();
-
-    List<User> findUserAll();
-
-//    List<User> findUserList(int type);
-
-    User findUserByUserId(String user_id);
-
-    User findUserByUserName(String username);
-
-//    User findUser(int type, int ex_id);
+    void saveReferee(Referee referee);
 }

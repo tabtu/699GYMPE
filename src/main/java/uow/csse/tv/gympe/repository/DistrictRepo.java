@@ -4,6 +4,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import uow.csse.tv.gympe.model.District;
 
+import java.util.List;
+
 /**
  * Category Repository Interface
  *
@@ -16,5 +18,7 @@ import uow.csse.tv.gympe.model.District;
 
 @Repository
 public interface DistrictRepo extends JpaRepository<District, Integer> {
+
+    List<District> findByCity_IdOrderBySortAsc(int id);
 
 }

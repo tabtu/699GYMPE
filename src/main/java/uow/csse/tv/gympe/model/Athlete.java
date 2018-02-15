@@ -27,12 +27,12 @@ public class Athlete extends Entitys implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private int athlete_id;
+    private int id;
     private boolean gender;
     private int height;
     private int weight;
-    private int focusLevel;
-    private int teamSpirit;
+    private int focuslevel;
+    private int teamspirit;
     private int psychological;
     private int technical;
     private int communication;
@@ -47,12 +47,12 @@ public class Athlete extends Entitys implements Serializable {
 
     }
 
-    public int getAthlete_id() {
-        return athlete_id;
+    public int getId() {
+        return id;
     }
 
-    public void setAthlete_id(int athlete_id) {
-        this.athlete_id = athlete_id;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public boolean getGender() {
@@ -87,12 +87,12 @@ public class Athlete extends Entitys implements Serializable {
         this.communication = communication;
     }
 
-    public int getFocusLevel() {
-        return focusLevel;
+    public int getFocuslevel() {
+        return focuslevel;
     }
 
-    public void setFocusLevel(int focusLevel) {
-        this.focusLevel = focusLevel;
+    public void setFocuslevel(int focuslevel) {
+        this.focuslevel = focuslevel;
     }
 
     public int getPhysical() {
@@ -111,12 +111,12 @@ public class Athlete extends Entitys implements Serializable {
         this.psychological = psychological;
     }
 
-    public int getTeamSpirit() {
-        return teamSpirit;
+    public int getTeamspirit() {
+        return teamspirit;
     }
 
-    public void setTeamSpirit(int teamSpirit) {
-        this.teamSpirit = teamSpirit;
+    public void setTeamspirit(int teamspirit) {
+        this.teamspirit = teamspirit;
     }
 
     public int getTechnical() {
