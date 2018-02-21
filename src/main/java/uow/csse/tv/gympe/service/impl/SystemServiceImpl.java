@@ -45,17 +45,28 @@ public class SystemServiceImpl implements SystemService {
     }
 
     @Override
-    public City findCity(int city_id) {
+    public City getCity(int city_id) {
         return cityRepo.findOne(city_id);
     }
 
     @Override
-    public Category findCategory(int category_id) {
+    public List<City> getCityList() {
+        return cityRepo.findAll();
+    }
+
+    @Override
+    public Category getCategory(int category_id) {
         return categoryRepo.findOne(category_id);
     }
 
     @Override
-    public District findDistrict(int district_id) {
+    public District getDistrict(int district_id) {
         return districtRepo.findOne(district_id);
     }
+
+    @Override
+    public List<District> getDistrictListByCity(int city_id) {
+        return districtRepo.findDistinctByCity_IdOrderBySortAsc(city_id);
+    }
+
 }

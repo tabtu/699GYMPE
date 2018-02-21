@@ -19,6 +19,6 @@ import java.util.List;
 @Repository
 public interface DistrictRepo extends JpaRepository<District, Integer> {
 
-    List<District> findByCity_IdOrderBySortAsc(int id);
+    List<District> findDistinctByCity_IdOrderBySortAsc(int id);
 
 }

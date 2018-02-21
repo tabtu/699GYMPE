@@ -27,10 +27,39 @@ public class PublicView {
         return sysService.getSportList();
     }
 
+    @GetMapping(value = "/city")
+    public List<City> getCityList() {
+        return sysService.getCityList();
+    }
+
+    @GetMapping(value = "/district{city}")
+    public List<District> getDistrictList(HttpServletRequest request) {
+        String city = request.getParameter("city");
+        return sysService.getDistrictListByCity(Integer.parseInt(city));
+    }
+
+    @GetMapping(value = "/home")
+    public List<News> getHomeList() {
+        return pubService.getHomeNewsList();
+    }
+
+    @GetMapping(value = "/news{page}")
+    public List<News> getNewsList(HttpServletRequest request) {
+        String page = request.getParameter("page");
+        return pubService.getNewsList(Integer.parseInt(page));
+    }
+
     @RequestMapping(value = "/club{page}", method = RequestMethod.GET)
     public List<Club> getClubList(HttpServletRequest request) {
         String page = request.getParameter("page");
+//        String dist = request.getParameter("dist");
         return pubService.getClubList(Integer.parseInt(page));
+    }
+
+    @GetMapping(value = "/test")
+    public Msg test() {
+        Msg m = new Msg("tabtu", "123456", new Date(Long.parseLong("1519169347000") * 1000));
+        return m;
     }
 
     @RequestMapping(value = "/school{page}", method = RequestMethod.GET)

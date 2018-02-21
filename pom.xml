@@ -6,7 +6,7 @@
 	<groupId>uow.csse.tv</groupId>
 	<artifactId>gympe</artifactId>
 	<version>1.0.0.1</version>
-	<packaging>jar</packaging>
+	<packaging>war</packaging>
 
 	<name>GYMPE</name>
 	<description>Demo project for Spring Boot</description>
@@ -37,7 +37,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			 <!--mvn clean package -->
-			<!--<scope>provided</scope>-->
+			<scope>provided</scope>
 		</dependency>
 
 		<dependency>

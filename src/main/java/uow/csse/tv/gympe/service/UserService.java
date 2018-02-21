@@ -24,4 +24,12 @@ public interface UserService {
     void saveCoach(Coach coach);
 
     void saveReferee(Referee referee);
+
+    List<Message> inboxMessage(String receiver, int page);
+
+    List<Message> outboxMessage(String sender, int page);
+
+    Message sendMessage(Message message);
+
+    Message checkMessage(Msg msg);
 }

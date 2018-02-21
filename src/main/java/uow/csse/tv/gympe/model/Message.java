@@ -2,6 +2,7 @@ package uow.csse.tv.gympe.model;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * Message Entity
@@ -23,6 +24,7 @@ public class Message extends Entitys implements Serializable {
     private boolean isread;
     @Column(length = 65535, columnDefinition="Text")
     private String text;
+    private Date logtime;
 
     public Message() {
 
@@ -32,6 +34,7 @@ public class Message extends Entitys implements Serializable {
         this.id = msd;
         this.text = txt;
         this.isread = false;
+        this.logtime = new Date();
     }
 
     public Msg getId() {
@@ -56,5 +59,13 @@ public class Message extends Entitys implements Serializable {
 
     public void setIsread(boolean isread) {
         this.isread = isread;
+    }
+
+    public Date getLogtime() {
+        return logtime;
+    }
+
+    public void setLogtime(Date logtime) {
+        this.logtime = logtime;
     }
 }

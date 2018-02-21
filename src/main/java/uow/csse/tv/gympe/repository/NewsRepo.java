@@ -1,8 +1,12 @@
 package uow.csse.tv.gympe.repository;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import uow.csse.tv.gympe.model.News;
+
+import java.util.List;
 
 /**
  * News Repository Interface
@@ -17,4 +21,7 @@ import uow.csse.tv.gympe.model.News;
 @Repository
 public interface NewsRepo extends JpaRepository<News, Long> {
 
+    List<News> findNewsByHomeOrderByUpdatedateDesc(boolean home);
+
+    Page<News> findNewsByHomeOrderByUpdatedateDesc(boolean home, Pageable pageable);
 }

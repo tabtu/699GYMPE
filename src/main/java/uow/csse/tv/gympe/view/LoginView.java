@@ -13,6 +13,14 @@ public class LoginView {
     @Autowired
     private LoginService loginService;
 
+    @RequestMapping(value = "/lg", method = RequestMethod.POST)
+    @ResponseBody
+    public User login(@RequestParam("usr") String username,
+                          @RequestParam("pwd") String password) {
+        User usr = new User(password, username, null, null);
+        return loginService.login(usr, 1);
+    }
+
     @RequestMapping(value = "/nm", method = RequestMethod.POST)
     @ResponseBody
     public User loginusnm(@RequestParam("usr") String username,
@@ -63,5 +71,13 @@ public class LoginView {
     public User getUser0(HttpServletRequest request) {
         String str = request.getParameter("str");
         return loginService.getUser(str, str, str);
+    }
+
+    @RequestMapping(value = "/reg/tl", method = RequestMethod.POST)
+    @ResponseBody
+    public User registtl(@RequestParam("usr") String usertl,
+                          @RequestParam("pwd") String password) {
+        User usr = new User(password, null, null, usertl);
+        return loginService.login(usr, 4);
     }
 }

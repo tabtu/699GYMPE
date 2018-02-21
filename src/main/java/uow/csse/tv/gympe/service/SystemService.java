@@ -20,9 +20,13 @@ import java.util.List;
 public interface SystemService {
     List<Sport> getSportList();
 
-    City findCity(int city_id);
+    City getCity(int city_id);
 
-    Category findCategory(int category_id);
+    List<City> getCityList();
 
-    District findDistrict(int district_id);
+    Category getCategory(int category_id);
+
+    District getDistrict(int district_id);
+
+    List<District> getDistrictListByCity(int city_id);
 }
