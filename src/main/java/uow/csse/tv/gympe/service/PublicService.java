@@ -44,4 +44,9 @@ public interface PublicService {
 
     List<VNews> getVNewsListByVenueId(int venueid, int page);
 
+    List<News> getHomeNewsList(int city_id);
+
+    List<News> getNewsList(int city_id, int page);
+
+    List<CNews> getCNewsListByClubId(int clubid, int page);
 }

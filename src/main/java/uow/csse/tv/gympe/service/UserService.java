@@ -17,6 +17,11 @@ import java.util.List;
  */
 
 public interface UserService {
+
+    List<User> getAllUsers(int page);
+
+    User getUser(String id);
+
     void saveVNews(VNews vnews);
 
     void saveAthlete(Athlete athlete);
@@ -24,4 +29,14 @@ public interface UserService {
     void saveCoach(Coach coach);
 
     void saveReferee(Referee referee);
+
+    List<Message> inboxMessage(String receiver, int page);
+
+    List<Message> outboxMessage(String sender, int page);
+
+    Message sendMessage(Message message);
+
+    Message checkMessage(Msg msg);
+
+    void deleteMessage(Msg msg);
 }

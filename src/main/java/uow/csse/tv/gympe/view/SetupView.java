@@ -40,7 +40,7 @@ public class SetupView {
                 tmp.setId(Integer.parseInt(dst[i][0]));
                 tmp.setName(dst[i][1]);
                 tmp.setSort(Integer.parseInt(dst[i][2]));
-                tmp.setCity(systemService.findCity(Integer.parseInt(dst[i][3])));
+                tmp.setCity(systemService.getCity(Integer.parseInt(dst[i][3])));
                 adminService.saveDistrict(tmp);
             }
             String[][] ca = {{"1", "综合", "0"}, {"2", "球类", "1"}, {"3", "棋牌", "2"}};
@@ -59,7 +59,7 @@ public class SetupView {
                 tmp.setName(spt[i][2]);
                 tmp.setSort(Integer.parseInt(spt[i][3]));
                 tmp.setTablename(spt[i][4]);
-                tmp.setCategory(systemService.findCategory(Integer.parseInt(spt[i][5])));
+                tmp.setCategory(systemService.getCategory(Integer.parseInt(spt[i][5])));
                 adminService.saveSport(tmp);
             }
             String[][] ve = {{"1", "北京路27号", "2018-02-09 17:10:07", "六广门体育场", null, "1"}, {"2", "宝山北路116号", "2018-02-09 17:11:29", "师大体育活动中心", "{0851}86726111", "1"}};
@@ -70,7 +70,7 @@ public class SetupView {
                 tmp.setCreatedate(format.parse(ve[i][2]));
                 tmp.setName(ve[i][3]);
                 tmp.setTel(ve[i][4]);
-                tmp.setDistrict(systemService.findDistrict(Integer.parseInt(ve[i][5])));
+                tmp.setDistrict(systemService.getDistrict(Integer.parseInt(ve[i][5])));
                 adminService.saveVenue(tmp);
             }
             String[][] cu = {{"1", "金仓路5号", "2018-02-09 17:15:40", null, "1", "贵阳实验二中", null, "0", "0851-86622267", "2018-02-09 17:16:16", "1"}, {"2", "中华北路100号", "2018-02-09 17:16:35", null, "1", "贵阳七中中北校区", null, "1", "{0851}86504014", "2018-02-09 17:16:49", "1"}, {"3", "北京路27号", "2018-02-09 17:17:14", null, null, "贵阳海伦青少年篮球俱乐部", null, "0", null, "2018-02-09 17:17:36", "1"}, {"4", "体育运动训练馆", "2018-02-09 17:18:36", null, null, "贵州米丘青少年体育运动俱乐部", null, "1", null, "2018-02-09 17:18:41", "1"}};
@@ -83,7 +83,7 @@ public class SetupView {
                 tmp.setName(cu[i][5]);
                 tmp.setSort(Integer.parseInt(cu[i][7]));
                 tmp.setTel(cu[i][8]);
-                tmp.setDistrict(systemService.findDistrict(Integer.parseInt(cu[i][10])));
+                tmp.setDistrict(systemService.getDistrict(Integer.parseInt(cu[i][10])));
                 adminService.saveClub(tmp);
             }
             String[][] ur = {{"ccy", "123", "陈春燕"}, {"tml", "123", "唐曼丽"}, {"wsw", "123", "魏社委"}, {"tab", "123", "Tab Tu"}};

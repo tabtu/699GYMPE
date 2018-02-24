@@ -51,6 +51,10 @@ public class Club extends Entitys implements Serializable {
 
     public Club() { }
 
+    public Club(int i) {
+        this.id = i;
+    }
+
     public int getId() {
         return id;
     }

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.HandlerMapping;
 import org.webjars.WebJarAssetLocator;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Date;
 
 @Controller
 public class WebJarView {

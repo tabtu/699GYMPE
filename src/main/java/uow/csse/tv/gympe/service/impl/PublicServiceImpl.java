@@ -30,10 +30,16 @@ public class PublicServiceImpl implements PublicService {
     private ClubRepo clubRepo;
 
     @Autowired
+    private CnewsRepo cnewsRepo;
+
+    @Autowired
     private VenueRepo venueRepo;
 
     @Autowired
     private VnewsRepo vnewsRepo;
+
+    @Autowired
+    private NewsRepo newsRepo;
 
     @Override
     public List<Club> getSchoolList(int page) {
@@ -105,6 +111,25 @@ public class PublicServiceImpl implements PublicService {
     public List<VNews> getVNewsListByVenueId(int venueid, int page) {
         Pageable pageable = new PageRequest(page, Const.PAGE_SIZE_FIVE);
         Page<VNews> tmp = vnewsRepo.findVNewsByVenue_Id(venueid, pageable);
+        return tmp.getContent();
+    }
+
+    @Override
+    public List<News> getHomeNewsList(int city_id) {
+        return newsRepo.findNewsByCity_IdAndHomeOrderByUpdatedateDesc(city_id, true);
+    }
+
+    @Override
+    public List<News> getNewsList(int city_id, int page) {
+        Pageable pageable = new PageRequest(page, Const.PAGE_SIZE_TEN);
+        Page<News> tmp = newsRepo.findNewsByCity_IdAndHomeOrderByUpdatedateDesc(city_id, false, pageable);
+        return tmp.getContent();
+    }
+
+    @Override
+    public List<CNews> getCNewsListByClubId(int clubid, int page) {
+        Pageable pageable = new PageRequest(page, Const.PAGE_SIZE_TEN);
+        Page<CNews> tmp = cnewsRepo.findCNewsByClub_Id(clubid, pageable);
         return tmp.getContent();
     }
 //

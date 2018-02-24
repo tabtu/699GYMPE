@@ -1,12 +1,18 @@
 package uow.csse.tv.gympe.service.impl;
 
+import antlr.debug.MessageAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import uow.csse.tv.gympe.config.Const;
 import uow.csse.tv.gympe.model.*;
 import uow.csse.tv.gympe.repository.*;
 import uow.csse.tv.gympe.service.UserService;
 
 import javax.xml.bind.annotation.XmlEnumValue;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -34,10 +40,10 @@ public class UserServiceImpl implements UserService {
     private UserRepo userRepo;
 
     @Autowired
-    private VnewsRepo vnewsRepo;
+    private MessageRepo messageRepo;
 
     @Autowired
-    private CityRepo cityRepo;
+    private VnewsRepo vnewsRepo;
 
     @Autowired
     private AthleteRepo athleteRepo;
@@ -47,6 +53,18 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private RefereeRepo refereeRepo;
+
+    @Override
+    public List<User> getAllUsers(int page) {
+        Pageable pageable = new PageRequest(page, Const.PAGE_SIZE_TWENTY);
+        Page<User> tmp = userRepo.findUsersByEnabled(true, pageable);
+        return tmp.getContent();
+    }
+
+    @Override
+    public User getUser(String id) {
+        return userRepo.findOne(id);
+    }
 
     @Override
     public void saveVNews(VNews vnews) {
@@ -66,5 +84,44 @@ public class UserServiceImpl implements UserService {
     @Override
     public void saveReferee(Referee referee) {
         refereeRepo.save(referee);
+    }
+
+    @Override
+    public List<Message> inboxMessage(String receiver, int page) {
+        Pageable pageable = new PageRequest(page, Const.PAGE_SIZE_TWENTY);
+        Page<Message> tmp = messageRepo.findMessagesById_ReceiverOrderByLogtimeDesc(receiver, pageable);
+        return tmp.getContent();
+    }
+
+    @Override
+    public
+    List<Message> outboxMessage(String sender, int page) {
+        Pageable pageable = new PageRequest(page, Const.PAGE_SIZE_TWENTY);
+        Page<Message> tmp = messageRepo.findMessagesById_SenderOrderByLogtimeDesc(sender, pageable);
+        return tmp.getContent();
+    }
+
+    @Override
+    public
+    Message sendMessage(Message message) {
+        message.setIsread(false);
+        message.setLogtime(new Date());
+        return messageRepo.save(message);
+    }
+
+    @Override
+    public Message checkMessage(Msg msg) {
+        Message tmp = messageRepo.findOne(msg);
+        if (tmp.getIsread() == false) {
+            tmp.setIsread(true);
+            return messageRepo.save(tmp);
+        } else {
+            return tmp;
+        }
+    }
+
+    @Override
+    public void deleteMessage(Msg msg) {
+        messageRepo.delete(msg);
     }
 }

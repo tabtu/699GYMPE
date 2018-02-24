@@ -3,16 +3,11 @@ package uow.csse.tv.gympe.repository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
-import uow.csse.tv.gympe.model.VNews;
-import uow.csse.tv.gympe.model.Venue;
-
-import java.util.Date;
-import java.util.List;
+import uow.csse.tv.gympe.model.CNews;
 
 /**
- * VNews Repository Interface
+ * CNews Repository Interface
  *
  * @author 	Tab Tu
  * @date	2018-02-05
@@ -22,7 +17,8 @@ import java.util.List;
  */
 
 @Repository
-public interface VnewsRepo extends JpaRepository<VNews, Long> {
+public interface CnewsRepo extends JpaRepository<CNews, Long> {
 
-    Page<VNews> findVNewsByVenue_Id(int id, Pageable pageable);
+    Page<CNews> findCNewsByClub_Id(int id, Pageable pageable);
+
 }
