@@ -55,6 +55,18 @@ public class UserServiceImpl implements UserService {
     private RefereeRepo refereeRepo;
 
     @Override
+    public List<User> getAllUsers(int page) {
+        Pageable pageable = new PageRequest(page, Const.PAGE_SIZE_TWENTY);
+        Page<User> tmp = userRepo.findUsersByEnabled(true, pageable);
+        return tmp.getContent();
+    }
+
+    @Override
+    public User getUser(String id) {
+        return userRepo.findOne(id);
+    }
+
+    @Override
     public void saveVNews(VNews vnews) {
         vnewsRepo.save(vnews);
     }
@@ -106,5 +118,10 @@ public class UserServiceImpl implements UserService {
         } else {
             return tmp;
         }
+    }
+
+    @Override
+    public void deleteMessage(Msg msg) {
+        messageRepo.delete(msg);
     }
 }

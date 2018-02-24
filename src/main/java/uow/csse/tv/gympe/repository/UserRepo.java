@@ -1,6 +1,8 @@
 package uow.csse.tv.gympe.repository;
 
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import uow.csse.tv.gympe.model.User;
@@ -30,7 +32,9 @@ public interface UserRepo extends JpaRepository<User, String> {
 
     User findUserByUsernameOrEmailOrTelephone(String username, String email, String telephone);
 
-    List<User> findUsersByEnabled(boolean enabled);
+    Page<User> findUsersByEnabled(boolean enabled, Pageable page);
+
+//    List<User> findUsersByEnabled(boolean enabled);
 
     List<User> findUsersByAthleteNotNull();
 

@@ -4,12 +4,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>uow.csse.tv</groupId>
-	<artifactId>gympe</artifactId>
+	<artifactId>gympe</artifactId>j
 	<version>1.0.0.1</version>
-	<packaging>war</packaging>
+	<packaging>jar</packaging>
 
 	<name>GYMPE</name>
-	<description>Demo project for Spring Boot</description>
+	<description>GPE data service</description>
 
 	<parent>
 		<groupId>org.springframework.boot</groupId>
@@ -37,7 +37,7 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-tomcat</artifactId>
 			 <!--mvn clean package -->
-			<scope>provided</scope>
+			<!--<scope>provided</scope>-->
 		</dependency>
 
 		<dependency>

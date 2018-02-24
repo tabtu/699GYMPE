@@ -46,6 +46,10 @@ public class Venue extends Entitys implements Serializable {
 
     public Venue() { }
 
+    public Venue(int i) {
+        this.id = i;
+    }
+
     public int getId() {
         return id;
     }

@@ -38,40 +38,45 @@ public class PublicView {
         return sysService.getDistrictListByCity(Integer.parseInt(city));
     }
 
-    @GetMapping(value = "/home")
-    public List<News> getHomeList() {
-        return pubService.getHomeNewsList();
+    @GetMapping(value = "/home{city}")
+    public List<News> getHomeList(HttpServletRequest request) {
+        String city = request.getParameter("city");
+        return pubService.getHomeNewsList(Integer.parseInt(city));
     }
 
-    @GetMapping(value = "/news{page}")
+    @GetMapping(value = "/news{city}{page}")
     public List<News> getNewsList(HttpServletRequest request) {
+        String city = request.getParameter("city");
         String page = request.getParameter("page");
-        return pubService.getNewsList(Integer.parseInt(page));
+        return pubService.getNewsList(Integer.parseInt(city), Integer.parseInt(page));
     }
 
-    @RequestMapping(value = "/club{page}", method = RequestMethod.GET)
+    @RequestMapping(value = "/club{city}{page}", method = RequestMethod.GET)
     public List<Club> getClubList(HttpServletRequest request) {
+        String city = request.getParameter("city");
         String page = request.getParameter("page");
-//        String dist = request.getParameter("dist");
-        return pubService.getClubList(Integer.parseInt(page));
+        return pubService.getClubListByCityId(Integer.parseInt(city), Integer.parseInt(page));
     }
 
-    @GetMapping(value = "/test")
-    public Msg test() {
-        Msg m = new Msg("tabtu", "123456", new Date(Long.parseLong("1519169347000") * 1000));
-        return m;
-    }
-
-    @RequestMapping(value = "/school{page}", method = RequestMethod.GET)
+    @RequestMapping(value = "/school{city}{page}", method = RequestMethod.GET)
     public List<Club> getSchoolList(HttpServletRequest request) {
+        String city = request.getParameter("city");
         String page = request.getParameter("page");
-        return pubService.getSchoolList(Integer.parseInt(page));
+        return pubService.getSchoolListByCityId(Integer.parseInt(city), Integer.parseInt(page));
     }
 
-    @RequestMapping(value = "/venue{page}", method = RequestMethod.GET)
-    public List<Venue> getVenuelist(HttpServletRequest request) {
+    @RequestMapping(value = "/cnews{id}{page}", method = RequestMethod.GET)
+    public List<CNews> getCNewsPages(HttpServletRequest request) {
+        String id = request.getParameter("id");
         String page = request.getParameter("page");
-        return pubService.getVenueList(Integer.parseInt(page));
+        return pubService.getCNewsListByClubId(Integer.parseInt(id), Integer.parseInt(page));
+    }
+
+    @RequestMapping(value = "/venue{city}{page}", method = RequestMethod.GET)
+    public List<Venue> getVenuelist(HttpServletRequest request) {
+        String city = request.getParameter("city");
+        String page = request.getParameter("page");
+        return pubService.getVenueListByCityId(Integer.parseInt(city), Integer.parseInt(page));
     }
 
     @RequestMapping(value = "/vnews{id}{page}", method = RequestMethod.GET)

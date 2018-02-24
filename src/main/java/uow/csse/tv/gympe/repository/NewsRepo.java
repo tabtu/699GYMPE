@@ -21,7 +21,7 @@ import java.util.List;
 @Repository
 public interface NewsRepo extends JpaRepository<News, Long> {
 
-    List<News> findNewsByHomeOrderByUpdatedateDesc(boolean home);
+    List<News> findNewsByCity_IdAndHomeOrderByUpdatedateDesc(int id, boolean home);
 
-    Page<News> findNewsByHomeOrderByUpdatedateDesc(boolean home, Pageable pageable);
+    Page<News> findNewsByCity_IdAndHomeOrderByUpdatedateDesc(int id, boolean home, Pageable pageable);
 }
