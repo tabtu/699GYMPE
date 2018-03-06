@@ -20,7 +20,7 @@ import java.util.List;
  *
  * @author 	Tab Tu
  * @date	2018-01-30
- * @update  Tab Tu on Feb.03 2018
+ * @update  Tab Tu on Mar.05 2018
  * @since	1.0
  *
  */
@@ -64,6 +64,46 @@ public class UserServiceImpl implements UserService {
     @Override
     public User getUser(String id) {
         return userRepo.findOne(id);
+    }
+
+//    @Override
+//    public User addFollowed(String user, String follow) {
+//        User u = userRepo.findOne(user);
+//        User adu = userRepo.findOne(follow);
+//        List<User> tmp = u.getFollows();
+//        tmp.add(adu);
+//        u.setFollows(tmp);
+//        return userRepo.save(u);
+//    }
+//
+//    @Override
+//    public User deleteFollowed(String user, String follow) {
+//        User u = userRepo.findOne(user);
+//        User deu = userRepo.findOne(follow);
+//        List<User> tmp = u.getFollows();
+//        tmp.remove(deu);
+//        u.setFollows(tmp);
+//        return userRepo.save(u);
+//    }
+
+    @Override
+    public User addJoin(String user, int join) {
+        User u = userRepo.findOne(user);
+        Club adc = clubRepo.findOne(join);
+        List<Club> tmp = u.getClubs();
+        tmp.add(adc);
+        u.setClubs(tmp);
+        return userRepo.save(u);
+    }
+
+    @Override
+    public User deleteJoin(String user, int join) {
+        User u = userRepo.findOne(user);
+        Club deu = clubRepo.findOne(join);
+        List<Club> tmp = u.getClubs();
+        tmp.remove(deu);
+        u.setClubs(tmp);
+        return userRepo.save(u);
     }
 
     @Override

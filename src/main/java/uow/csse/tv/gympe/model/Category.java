@@ -1,9 +1,13 @@
 package uow.csse.tv.gympe.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.NaturalId;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Category Entity
@@ -25,6 +29,9 @@ public class Category extends Entitys implements Serializable {
     @Column(nullable = false)
     private String name;
     private int sort;
+//    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
+//    @JsonBackReference
+//    private List<Club> sports = new ArrayList<>();
 
     public Category() {
 
@@ -57,4 +64,12 @@ public class Category extends Entitys implements Serializable {
     public void setSort(int sort) {
         this.sort = sort;
     }
+
+//    public List<Club> getSports() {
+//        return sports;
+//    }
+//
+//    public void setSports(List<Club> sports) {
+//        this.sports = sports;
+//    }
 }

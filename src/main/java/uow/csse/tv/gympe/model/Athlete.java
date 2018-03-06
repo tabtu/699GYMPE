@@ -40,7 +40,7 @@ public class Athlete extends Entitys implements Serializable {
     //private String qualification;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tv_athlete_club", joinColumns = @JoinColumn(name = "athlete_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
-    @JsonManagedReference
+    @JsonBackReference
     private List<Club> clubs = new ArrayList<>();
 
     public Athlete() {
@@ -131,7 +131,6 @@ public class Athlete extends Entitys implements Serializable {
         return clubs;
     }
 
-    @JsonBackReference
     public void setClubs(List<Club> clubs) {
         this.clubs = clubs;
     }

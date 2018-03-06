@@ -43,11 +43,17 @@ public class Club extends Entitys implements Serializable {
     @Column(nullable = false)
     private boolean school;
     @ManyToMany(mappedBy = "clubs", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Coach> coaches = new ArrayList<>();
     @ManyToMany(mappedBy = "clubs", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Referee> referees = new ArrayList<>();
     @ManyToMany(mappedBy = "clubs", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private List<Athlete> athletes = new ArrayList<>();
+    @ManyToMany(mappedBy = "clubs", cascade = CascadeType.ALL)
+    @JsonManagedReference
+    private List<User> users = new ArrayList<>();
 
     public Club() { }
 
@@ -83,7 +89,6 @@ public class Club extends Entitys implements Serializable {
         return district;
     }
 
-    @JsonBackReference
     public void setDistrict(District district) {
         this.district = district;
     }
@@ -148,7 +153,6 @@ public class Club extends Entitys implements Serializable {
         return athletes;
     }
 
-    @JsonBackReference
     public void setAthletes(List<Athlete> athletes) {
         this.athletes = athletes;
     }
@@ -157,7 +161,6 @@ public class Club extends Entitys implements Serializable {
         return coaches;
     }
 
-    @JsonBackReference
     public void setCoaches(List<Coach> coaches) {
         this.coaches = coaches;
     }
@@ -166,8 +169,15 @@ public class Club extends Entitys implements Serializable {
         return referees;
     }
 
-    @JsonBackReference
     public void setReferees(List<Referee> referees) {
         this.referees = referees;
+    }
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

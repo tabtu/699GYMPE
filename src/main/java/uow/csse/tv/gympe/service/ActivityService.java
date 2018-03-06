@@ -24,4 +24,6 @@ public interface ActivityService {
 
     List<Activity> getActivityByVenue(int id, int page);
 
+    List<Activity> getActivityForHomepage(int page);
+
 }

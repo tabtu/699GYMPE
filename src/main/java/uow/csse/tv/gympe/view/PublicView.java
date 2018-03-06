@@ -58,6 +58,18 @@ public class PublicView {
         return pubService.getClubListByCityId(Integer.parseInt(city), Integer.parseInt(page));
     }
 
+    @RequestMapping(value = "/cdetail{id}", method = RequestMethod.GET)
+    public Club getClubDetail(HttpServletRequest request) {
+        String id = request.getParameter("id");
+        return pubService.getClub(Integer.parseInt(id));
+    }
+
+    @RequestMapping(value = "/vdetail{id}", method = RequestMethod.GET)
+    public Venue getVenueDetail(HttpServletRequest request) {
+        String id = request.getParameter("id");
+        return pubService.getVenue(Integer.parseInt(id));
+    }
+
     @RequestMapping(value = "/school{city}{page}", method = RequestMethod.GET)
     public List<Club> getSchoolList(HttpServletRequest request) {
         String city = request.getParameter("city");

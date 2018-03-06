@@ -28,7 +28,7 @@ public class Log extends Entitys implements Serializable {
     private String id;
     @ManyToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name="lg_user")
-    @JsonManagedReference
+    @JsonBackReference
     private User lguser;
     @Column(nullable = false)
     private Date lgtime;

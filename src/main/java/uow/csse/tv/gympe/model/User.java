@@ -1,5 +1,6 @@
 package uow.csse.tv.gympe.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import org.hibernate.annotations.GenericGenerator;
@@ -60,6 +61,16 @@ public class User extends Entitys implements Serializable {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name="user_referee")
     private Referee referee;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "tv_user_club", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
+    @JsonBackReference
+    private List<Club> clubs = new ArrayList<>();
+//    @ManyToMany(cascade = CascadeType.ALL)
+//    @JoinTable(name = "tv_user_follow", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "follow_id"))
+//    private List<User> follows = new ArrayList<>();
+//    @ManyToMany(mappedBy = "follows", cascade = CascadeType.ALL)
+//    @JsonBackReference
+//    private List<User> fans = new ArrayList<>();
 
     public User() { super(); }
 
@@ -205,4 +216,29 @@ public class User extends Entitys implements Serializable {
         this.gender = gender;
     }
 
+    public List<Club> getClubs() {
+        return clubs;
+    }
+
+    public void setClubs(List<Club> clubs) {
+        this.clubs = clubs;
+    }
+
+//    public List<User> getFollows() {
+//        return follows;
+//    }
+//
+//    @JsonBackReference
+//    public void setFollows(List<User> follows) {
+//        this.follows = follows;
+//    }
+//
+//    public List<User> getFans() {
+//        return fans;
+//    }
+//
+//    @JsonBackReference
+//    public void setFans(List<User> fans) {
+//        this.fans = fans;
+//    }
 }

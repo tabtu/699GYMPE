@@ -5,7 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import uow.csse.tv.gympe.model.Activity;
-import uow.csse.tv.gympe.model.Venue;
 import uow.csse.tv.gympe.service.ActivityService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +15,12 @@ import java.util.List;
 public class ActivityView {
     @Autowired
     private ActivityService activityService;
+
+    @RequestMapping(value = "/home{page}", method = RequestMethod.GET)
+    public List<Activity> getHomeActivitylist(HttpServletRequest request) {
+        String page = request.getParameter("page");
+        return activityService.getActivityForHomepage(Integer.parseInt(page));
+    }
 
     @RequestMapping(value = "/detail{id}", method = RequestMethod.GET)
     public Activity getActivity(HttpServletRequest request) {

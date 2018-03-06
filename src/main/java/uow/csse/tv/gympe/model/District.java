@@ -6,6 +6,8 @@ import org.hibernate.validator.constraints.LuhnCheck;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * District Entity
@@ -31,6 +33,9 @@ public class District extends Entitys implements Serializable {
     @JsonManagedReference
     private City city;
     private int sort;
+//    @OneToMany(mappedBy = "district", cascade = CascadeType.ALL)
+//    @JsonBackReference
+//    private List<Club> clubs = new ArrayList<>();
 
     public District() {
 
@@ -67,4 +72,12 @@ public class District extends Entitys implements Serializable {
     public void setSort(int sort) {
         this.sort = sort;
     }
+
+//    public List<Club> getClubs() {
+//        return clubs;
+//    }
+//
+//    public void setClubs(List<Club> clubs) {
+//        this.clubs = clubs;
+//    }
 }

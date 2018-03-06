@@ -33,7 +33,7 @@ public class Referee extends Entitys implements Serializable {
     private List<Qualification> qualifications;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tv_referee_club", joinColumns = @JoinColumn(name = "referee_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
-    @JsonManagedReference
+    @JsonBackReference
     private List<Club> clubs = new ArrayList<>();
 
     public Referee() {
@@ -52,7 +52,7 @@ public class Referee extends Entitys implements Serializable {
         return clubs;
     }
 
-    @JsonBackReference
+//    @JsonBackReference
     public void setClubs(List<Club> clubs) {
         this.clubs = clubs;
     }
@@ -61,7 +61,7 @@ public class Referee extends Entitys implements Serializable {
         return qualifications;
     }
 
-    @JsonBackReference
+//    @JsonBackReference
     public void setQualifications(List<Qualification> qualifications) {
         this.qualifications = qualifications;
     }

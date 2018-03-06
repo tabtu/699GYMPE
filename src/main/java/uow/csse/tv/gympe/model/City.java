@@ -1,7 +1,12 @@
 package uow.csse.tv.gympe.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * City Entity
@@ -23,6 +28,9 @@ public class City extends Entitys implements Serializable {
     @Column(nullable = false)
     private String name;
     private int sort;
+    @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
+    @JsonBackReference
+    private List<District> districts = new ArrayList<>();
 
     public City() {
 
@@ -54,5 +62,13 @@ public class City extends Entitys implements Serializable {
 
     public void setSort(int sort) {
         this.sort = sort;
+    }
+
+    public List<District> getDistricts() {
+        return districts;
+    }
+
+    public void setDistricts(List<District> districts) {
+        this.districts = districts;
     }
 }

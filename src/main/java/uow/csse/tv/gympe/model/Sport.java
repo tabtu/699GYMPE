@@ -8,7 +8,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Sport list
@@ -29,7 +28,6 @@ public class Sport extends Entitys implements Serializable {
     private int id;
     @NaturalId
     private String name;
-
     private String cname;
     @Column(nullable = false)
     private String tablename;
@@ -38,8 +36,9 @@ public class Sport extends Entitys implements Serializable {
     @JsonManagedReference
     private Category category;
     private int sort;
-    @ManyToMany(mappedBy = "sports", cascade = CascadeType.ALL)
-    private List<Venue> venues = new ArrayList<>();
+//    @ManyToMany(mappedBy = "sports", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+//    @JsonBackReference
+//    private List<Venue> venues = new ArrayList<>();
 
     public Sport() { }
 
@@ -73,7 +72,6 @@ public class Sport extends Entitys implements Serializable {
         return category;
     }
 
-    @JsonBackReference
     public void setCategory(Category category) {
         this.category = category;
     }
@@ -86,12 +84,11 @@ public class Sport extends Entitys implements Serializable {
         this.sort = sort;
     }
 
-    public List<Venue> getVenues() {
-        return venues;
-    }
-
-    @JsonBackReference
-    public void setVenues(List<Venue> venues) {
-        this.venues = venues;
-    }
+//    public List<Venue> getVenues() {
+//        return venues;
+//    }
+//
+//    public void setVenues(List<Venue> venues) {
+//        this.venues = venues;
+//    }
 }

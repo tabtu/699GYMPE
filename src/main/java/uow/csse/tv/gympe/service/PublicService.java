@@ -20,6 +20,8 @@ import java.util.List;
 
 public interface PublicService {
 
+    Club getClub(int id);
+
     List<Club> getClubList(int page);
 
     List<Club> getClubAndSchoolByNameLike(String name, int page);
@@ -33,6 +35,8 @@ public interface PublicService {
     List<Club> getSchoolListByDistrictId(int id, int page);
 
     List<Club> getSchoolListByCityId(int id, int page);
+
+    Venue getVenue(int id);
 
     List<Venue> getVenueListByNameLike(String name, int page);
 

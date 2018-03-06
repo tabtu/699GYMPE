@@ -1,0 +1,12 @@
+Developing:
+ListActivity: loadmore, search interface
+DetailActivity: News, Activity data and adapter
+SchoolDetailActivity: member list binding, Course, News, Honor, Activity adapters, fill data with pictures and text
+ClubDetailActivity: JOIN, FOLLOW features. MEMBER, COACH, COURSE jump to list activity, others are the same with SDA
+NewsDetailActivity: fix the fixiable for suitable screen of ludable
+ActivityListAdapter: with different key information tag, and fix the detail activity
+RunningActivity: load JS for map showing and log the gps points with lng and lat
+
+Server:
+fill up the data
+update model for running feature

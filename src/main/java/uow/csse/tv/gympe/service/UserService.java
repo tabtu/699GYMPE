@@ -22,6 +22,14 @@ public interface UserService {
 
     User getUser(String id);
 
+//    User addFollowed(String user, String follow);
+//
+//    User deleteFollowed(String user, String follow);
+
+    User addJoin(String user, int join);
+
+    User deleteJoin(String user, int join);
+
     void saveVNews(VNews vnews);
 
     void saveAthlete(Athlete athlete);

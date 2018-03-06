@@ -33,11 +33,9 @@ public class Activity extends Entitys implements Serializable {
     private String title;
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tv_activity_club", joinColumns = @JoinColumn(name = "activity_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
-    @JsonManagedReference
     private List<Club> clubs = new ArrayList<>();
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(name = "tv_activity_venue", joinColumns = @JoinColumn(name = "activity_id"), inverseJoinColumns = @JoinColumn(name = "venue_id"))
-    @JsonManagedReference
     private List<Venue> venues = new ArrayList<>();
     @Column(nullable = false)
     private Date startdate;
@@ -51,7 +49,6 @@ public class Activity extends Entitys implements Serializable {
     private String content;
     private boolean avaliable;
     private int sort;
-
 
     public Activity() { }
 

@@ -42,6 +42,11 @@ public class PublicServiceImpl implements PublicService {
     private NewsRepo newsRepo;
 
     @Override
+    public Club getClub(int id) {
+        return clubRepo.findOne(id);
+    }
+
+    @Override
     public List<Club> getSchoolList(int page) {
         Page<Club> tmp = clubRepo.findClubsBySchoolOrderBySortDesc(true, new PageRequest(page, Const.PAGE_SIZE_TEN));
         return tmp.getContent();
@@ -81,6 +86,11 @@ public class PublicServiceImpl implements PublicService {
     public List<Club> getSchoolListByCityId(int id, int page) {
         Page<Club> tmp = clubRepo.findClubsBySchoolAndDistrict_City_IdOrderBySortDesc(true, id, new PageRequest(page, Const.PAGE_SIZE_TEN));
         return tmp.getContent();
+    }
+
+    @Override
+    public Venue getVenue(int id) {
+        return venueRepo.findOne(id);
     }
 
     @Override

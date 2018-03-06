@@ -37,6 +37,7 @@ public class Venue extends Entitys implements Serializable {
     private String address;
     private Date createdate;
     private String picture;
+    private String website;
     private int rate;
     private int sort;
     @ManyToMany(cascade = CascadeType.ALL)
@@ -78,7 +79,6 @@ public class Venue extends Entitys implements Serializable {
         return district;
     }
 
-    @JsonBackReference
     public void setDistrict(District district) {
         this.district = district;
     }
@@ -107,6 +107,14 @@ public class Venue extends Entitys implements Serializable {
         this.picture = picture;
     }
 
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
     public int getRate() {
         return rate;
     }
@@ -127,7 +135,6 @@ public class Venue extends Entitys implements Serializable {
         return sports;
     }
 
-    @JsonBackReference
     public void setSports(List<Sport> sports) {
         this.sports = sports;
     }

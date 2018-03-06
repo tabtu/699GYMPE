@@ -55,4 +55,10 @@ public class ActivityServiceImpl implements ActivityService {
         return tmp.getContent();
     }
 
+    @Override
+    public List<Activity> getActivityForHomepage(int page) {
+        Page<Activity> tmp = activityRepo.findActivitiesByAvaliableOrderBySortDesc(true, new PageRequest(page, Const.PAGE_SIZE_TEN));
+        return tmp.getContent();
+    }
+
 }
