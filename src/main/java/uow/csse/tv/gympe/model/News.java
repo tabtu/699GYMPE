@@ -29,9 +29,9 @@ public class News extends Entitys implements Serializable {
     private String title;
     @Column(length = 65535, columnDefinition = "Text")
     private String text;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name = "news_city")
-    @JsonManagedReference
+    @JsonBackReference
     private City city;
     private String background;
     private String author;

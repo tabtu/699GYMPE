@@ -26,7 +26,7 @@ public class Log extends Entitys implements Serializable {
     @Id
     @GeneratedValue(generator = "jpa-uuid")
     private String id;
-    @ManyToOne(cascade = CascadeType.REFRESH)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.REFRESH)
     @JoinColumn(name="lg_user")
     @JsonBackReference
     private User lguser;

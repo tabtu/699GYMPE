@@ -23,9 +23,9 @@ public class CNews extends Entitys implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="cnews_club")
-    @JsonManagedReference
+    @JsonBackReference
     private Club club;
     @Column(nullable = false)
     private String title;

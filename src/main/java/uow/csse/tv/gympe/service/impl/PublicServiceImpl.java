@@ -60,7 +60,7 @@ public class PublicServiceImpl implements PublicService {
 
     @Override
     public List<Club> getClubAndSchoolByNameLike(String name, int page) {
-        Page<Club> tmp = clubRepo.findClubsByNameLikeOrderBySortDesc(name, new PageRequest(page, Const.PAGE_SIZE_TWENTY));
+        Page<Club> tmp = clubRepo.findClubsByNameContainsOrderBySortDesc(name, new PageRequest(page, Const.PAGE_SIZE_TWENTY));
         return tmp.getContent();
     }
 
@@ -95,7 +95,7 @@ public class PublicServiceImpl implements PublicService {
 
     @Override
     public List<Venue> getVenueListByNameLike(String name, int page) {
-        Page<Venue> tmp = venueRepo.findVenuesByNameLikeOrderBySortDesc(name, new PageRequest(page, Const.PAGE_SIZE_TEN));
+        Page<Venue> tmp = venueRepo.findVenuesByNameContainsOrderBySortDesc(name, new PageRequest(page, Const.PAGE_SIZE_TEN));
         return tmp.getContent();
     }
 

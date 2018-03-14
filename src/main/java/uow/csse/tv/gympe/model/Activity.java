@@ -31,11 +31,13 @@ public class Activity extends Entitys implements Serializable {
     private String id;
     @Column(nullable = false)
     private String title;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "tv_activity_club", joinColumns = @JoinColumn(name = "activity_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
+    @JsonManagedReference
     private List<Club> clubs = new ArrayList<>();
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "tv_activity_venue", joinColumns = @JoinColumn(name = "activity_id"), inverseJoinColumns = @JoinColumn(name = "venue_id"))
+    @JsonManagedReference
     private List<Venue> venues = new ArrayList<>();
     @Column(nullable = false)
     private Date startdate;

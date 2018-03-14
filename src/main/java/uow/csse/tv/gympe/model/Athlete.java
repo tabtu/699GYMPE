@@ -38,7 +38,7 @@ public class Athlete extends Entitys implements Serializable {
     private int communication;
     private int physical;
     //private String qualification;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "tv_athlete_club", joinColumns = @JoinColumn(name = "athlete_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
     @JsonBackReference
     private List<Club> clubs = new ArrayList<>();

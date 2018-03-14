@@ -20,6 +20,14 @@ public interface LoginService {
 
     /**
      *
+     * @param id
+     * @param type 0 athelete, 1 coach, 2 referee
+     * @return
+     */
+    User getUser(int id, int type);
+
+    /**
+     *
      * @param user Login information
      * @param type 0 usid, 1 usnm, 2 usem, 3 uswx, 4 ustl
      * @return

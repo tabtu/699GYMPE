@@ -31,9 +31,9 @@ public class Sport extends Entitys implements Serializable {
     private String cname;
     @Column(nullable = false)
     private String tablename;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="sport_category")
-    @JsonManagedReference
+    @JsonBackReference
     private Category category;
     private int sort;
 //    @ManyToMany(mappedBy = "sports", fetch = FetchType.LAZY, cascade = CascadeType.ALL)

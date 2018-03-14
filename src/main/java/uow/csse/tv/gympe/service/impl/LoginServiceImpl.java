@@ -3,7 +3,9 @@ package uow.csse.tv.gympe.service.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uow.csse.tv.gympe.config.Const;
+import uow.csse.tv.gympe.model.Log;
 import uow.csse.tv.gympe.model.User;
+import uow.csse.tv.gympe.repository.LogRepo;
 import uow.csse.tv.gympe.repository.UserRepo;
 import uow.csse.tv.gympe.service.LoginService;
 import uow.csse.tv.gympe.utils.MD5Util;
@@ -24,6 +26,9 @@ import java.util.Date;
 public class LoginServiceImpl implements LoginService {
     @Autowired
     private UserRepo userRepo;
+
+    @Autowired
+    private LogRepo logRepo;
 
     @Override
     public User getUser(String userid) {
@@ -49,6 +54,19 @@ public class LoginServiceImpl implements LoginService {
     }
 
     @Override
+    public User getUser(int id, int type) {
+        if (type == 0) {
+            return userRepo.findUserByAthlete_Id(id);
+        } else if (type == 1) {
+            return userRepo.findUserByCoach_Id(id);
+        } else if (type == 2){
+            return userRepo.findUserByReferee_Id(id);
+        } else {
+            return null;
+        }
+    }
+
+    @Override
     public User login(User user, int type) {
         User tmp;
         if (type == 0) {
@@ -64,6 +82,10 @@ public class LoginServiceImpl implements LoginService {
         } else {
             return null;
         }
+
+        Log log = new Log(tmp, new Date(), "attmpt to login");
+        logRepo.save(log);
+
         String md5pwd = MD5Util.encrypt(user.getPassword() + Const.PASSWORD_KEY);
         if (tmp != null) {
             if (tmp.getPassword().equals(md5pwd)) {
@@ -88,6 +110,8 @@ public class LoginServiceImpl implements LoginService {
             User tmp = userRepo.save(user);
             if (tmp != null) {
                 tmp.setPassword(tmp.getId());
+                Log log = new Log(tmp, new Date(), "regist to server");
+                logRepo.save(log);
                 return tmp;
             } else {
                 return null;

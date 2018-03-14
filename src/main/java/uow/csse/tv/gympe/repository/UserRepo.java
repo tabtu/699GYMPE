@@ -32,21 +32,29 @@ public interface UserRepo extends JpaRepository<User, String> {
 
     User findUserByUsernameOrEmailOrTelephone(String username, String email, String telephone);
 
-    Page<User> findUsersByEnabled(boolean enabled, Pageable page);
-
-//    List<User> findUsersByEnabled(boolean enabled);
-
-    List<User> findUsersByAthleteNotNull();
-
-    List<User> findUsersByCoachNotNull();
-
-    List<User> findUsersByRefereeNotNull();
-
     User findUserByAthlete_Id(int id);
 
     User findUserByCoach_Id(int id);
 
     User findUserByReferee_Id(int id);
+
+    Page<User> findUsersByEnabled(boolean enabled, Pageable page);
+
+//    List<User> findUsersByEnabled(boolean enabled);
+
+    Page<User> findUsersByAthleteNotNull(Pageable page);
+
+    Page<User> findUsersByCoachNotNull(Pageable page);
+
+    Page<User> findUsersByRefereeNotNull(Pageable page);
+
+    Page<User> findUsersByAthleteNotNullAndNameContains(String name, Pageable page);
+
+    Page<User> findUsersByCoachNotNullAndNameContains(String name, Pageable page);
+
+    Page<User> findUsersByRefereeNotNullAndNameContains(String name, Pageable page);
+
+    Page<User> findUsersByNameContains(String name, Pageable page);
 
 //    @Transactional
 //    @Modifying

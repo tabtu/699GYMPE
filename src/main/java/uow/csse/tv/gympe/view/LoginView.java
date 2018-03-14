@@ -6,6 +6,7 @@ import uow.csse.tv.gympe.model.User;
 import uow.csse.tv.gympe.service.LoginService;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @RestController
 @RequestMapping("/lg")
@@ -60,6 +61,23 @@ public class LoginView {
 //        User usr = new User(password, );
 //        return loginService.login(usr, 3);
 //    }
+
+    @RequestMapping(value = "/gusr{type}{id}", method = RequestMethod.GET)
+    public User getUserFromType(HttpServletRequest request) {
+        String tp = request.getParameter("type");
+        String id = request.getParameter("id");
+        int type = -1;
+        if (tp.equals("athelete")) {
+            type = 0;
+        } else if (tp.equals("coach")) {
+            type = 1;
+        } else if (tp.equals("referee")) {
+            type = 2;
+        } else {
+            type = -1;
+        }
+        return loginService.getUser(Integer.parseInt(id), type);
+    }
 
     @RequestMapping(value = "/usid{id}", method = RequestMethod.GET)
     public User getUser(HttpServletRequest request) {

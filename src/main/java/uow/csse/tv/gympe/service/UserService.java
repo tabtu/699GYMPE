@@ -47,4 +47,14 @@ public interface UserService {
     Message checkMessage(Msg msg);
 
     void deleteMessage(Msg msg);
+
+    List<ActOds> orderList(String usid, boolean paid, int page);
+
+    List<ActOds> memberList(String actid, int page);
+
+    ActOds getActivityOrder(String actodsid);
+
+    void bookorder(String usid, String actid, int count);
+
+    boolean payOrder(String actodsid);
 }

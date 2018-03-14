@@ -23,9 +23,9 @@ public class VNews extends Entitys implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private long id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="vnews_venues")
-    @JsonManagedReference
+    @JsonBackReference
     private Venue venue;
     @Column(nullable = false)
     private String title;

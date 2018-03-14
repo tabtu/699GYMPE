@@ -29,7 +29,7 @@ public class City extends Entitys implements Serializable {
     private String name;
     private int sort;
     @OneToMany(mappedBy = "city", cascade = CascadeType.ALL)
-    @JsonBackReference
+    @JsonManagedReference
     private List<District> districts = new ArrayList<>();
 
     public City() {

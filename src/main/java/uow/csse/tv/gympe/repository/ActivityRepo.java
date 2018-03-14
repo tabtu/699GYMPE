@@ -28,4 +28,6 @@ public interface ActivityRepo extends JpaRepository<Activity, String> {
     Page<Activity> findActivitiesByClubsContainingOrderByEnddateDesc(Club club, Pageable page);
 
     Page<Activity> findActivitiesByVenuesContainingOrderByEnddateDesc(Venue venue, Pageable page);
+
+    Page<Activity> findActivitiesByTitleContainsOrderByEnddateDesc(String title, Pageable page);
 }

@@ -27,9 +27,9 @@ public class Club extends Entitys implements Serializable {
     private int id;
     @Column(nullable = false)
     private String name;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="club_district")
-    @JsonManagedReference
+    @JsonBackReference
     private District district;
     private String picture;
     private String address;

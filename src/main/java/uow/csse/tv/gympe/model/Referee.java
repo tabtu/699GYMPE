@@ -27,11 +27,11 @@ public class Referee extends Entitys implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "tv_referee_qualification", joinColumns = @JoinColumn(name = "referee_id"), inverseJoinColumns = @JoinColumn(name = "qualification_id"))
     @JsonManagedReference
     private List<Qualification> qualifications;
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "tv_referee_club", joinColumns = @JoinColumn(name = "referee_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
     @JsonBackReference
     private List<Club> clubs = new ArrayList<>();

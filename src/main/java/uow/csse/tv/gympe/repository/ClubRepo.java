@@ -22,11 +22,13 @@ import java.util.List;
 @Repository
 public interface ClubRepo extends JpaRepository<Club, Integer> {
 
-    Page<Club> findClubsByNameLikeOrderBySortDesc(String name, Pageable page);
+    Page<Club> findClubsByNameContainsOrderBySortDesc(String name, Pageable page);
 
     Page<Club> findClubsBySchoolAndDistrict_City_IdOrderBySortDesc(boolean school, int id, Pageable page);
 
     Page<Club> findClubsBySchoolAndDistrict_IdOrderBySortDesc(boolean school, int id, Pageable page);
 
     Page<Club> findClubsBySchoolOrderBySortDesc(boolean school, Pageable pageable);
+
+    Page<Club> findClubsBySchoolAndNameContainsOrderBySortDesc(boolean school, String name, Pageable page);
 }

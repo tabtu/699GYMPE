@@ -28,14 +28,11 @@ public class District extends Entitys implements Serializable {
     private int id;
     @Column(nullable = false)
     private String name;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="district_city")
-    @JsonManagedReference
+    @JsonBackReference
     private City city;
     private int sort;
-//    @OneToMany(mappedBy = "district", cascade = CascadeType.ALL)
-//    @JsonBackReference
-//    private List<Club> clubs = new ArrayList<>();
 
     public District() {
 
@@ -72,12 +69,4 @@ public class District extends Entitys implements Serializable {
     public void setSort(int sort) {
         this.sort = sort;
     }
-
-//    public List<Club> getClubs() {
-//        return clubs;
-//    }
-//
-//    public void setClubs(List<Club> clubs) {
-//        this.clubs = clubs;
-//    }
 }

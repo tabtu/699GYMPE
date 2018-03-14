@@ -2,10 +2,7 @@ package uow.csse.tv.gympe.view;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import uow.csse.tv.gympe.model.Message;
-import uow.csse.tv.gympe.model.Msg;
-import uow.csse.tv.gympe.model.Msgs;
-import uow.csse.tv.gympe.model.User;
+import uow.csse.tv.gympe.model.*;
 import uow.csse.tv.gympe.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,9 +28,9 @@ public class UserView {
     @GetMapping(value = "/in{rec}{page}")
     public List<Msgs> getInbox(HttpServletRequest request) {
         String receiver = request.getParameter("rec");
-        String page = request.getParameter("page");
+        int page = Integer.parseInt(request.getParameter("page"));
         List<Msgs> result = new ArrayList<>();
-        for (Message ele : userService.inboxMessage(receiver, Integer.parseInt(page))) {
+        for (Message ele : userService.inboxMessage(receiver, page)) {
             result.add(new Msgs(ele.getId().getSender(), ele.getId().getReceiver(), ele.getId().getSendtime(), ele.getText(), ele.getIsread()));
         }
         return result;
@@ -42,9 +39,9 @@ public class UserView {
     @GetMapping(value = "/out{sen}{page}")
     public List<Msgs> getOutbox(HttpServletRequest request) {
         String sender = request.getParameter("sen");
-        String page = request.getParameter("page");
+        int page = Integer.parseInt(request.getParameter("page"));
         List<Msgs> result = new ArrayList<>();
-        for (Message ele : userService.outboxMessage(sender, Integer.parseInt(page))) {
+        for (Message ele : userService.outboxMessage(sender, page)) {
             result.add(new Msgs(ele.getId().getSender(), ele.getId().getReceiver(), ele.getId().getSendtime(), ele.getText(), ele.getIsread()));
         }
         return result;
@@ -129,5 +126,54 @@ public class UserView {
     public User getUserDetail(HttpServletRequest request) {
         String id = request.getParameter("id");
         return userService.getUser(id);
+    }
+
+    @GetMapping(value = "/orderlist{usr}{pd}{page}")
+    public List<ActOds> getorderList(HttpServletRequest request) {
+        String usid = request.getParameter("usr");
+        String paid = request.getParameter("pd");
+        int page = Integer.parseInt(request.getParameter("page"));
+        if (paid.equals("1")) {
+            return userService.orderList(usid, true, page);
+        } else {
+            return userService.orderList(usid, false, page);
+        }
+    }
+
+    @GetMapping(value = "/memberlist{act}{page}")
+    public List<ActOds> getmemberList(HttpServletRequest request) {
+        String actid = request.getParameter("act");
+        int page = Integer.parseInt(request.getParameter("page"));
+        return userService.memberList(actid, page);
+    }
+
+    @GetMapping(value = "/order{odid}")
+    public ActOds getOrder(HttpServletRequest request) {
+        String odid = request.getParameter("odid");
+        return userService.getActivityOrder(odid);
+    }
+
+    @RequestMapping(value = "/book{usr}{act}{count}", method = RequestMethod.POST)
+    @ResponseBody
+    public String bookOrder(@RequestParam("usr") String user,
+                            @RequestParam("act") String activity,
+                            @RequestParam("count") String count) {
+        try {
+            userService.bookorder(user, activity, Integer.parseInt(count));
+            return "true";
+        } catch (Exception e) {
+            return "false";
+        }
+    }
+
+    @RequestMapping(value = "/pay{ord}", method = RequestMethod.POST)
+    @ResponseBody
+    public String bookOrder(@RequestParam("ord") String odid) {
+        try {
+            userService.payOrder(odid);
+            return "true";
+        } catch (Exception e) {
+            return "false";
+        }
     }
 }

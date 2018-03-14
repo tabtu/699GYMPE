@@ -29,9 +29,9 @@ public class Venue extends Entitys implements Serializable {
     @Column(nullable = false)
     private String name;
     private String tel;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="venues_district")
-    @JsonManagedReference
+    @JsonBackReference
     private District district;
     @Column(nullable = false)
     private String address;

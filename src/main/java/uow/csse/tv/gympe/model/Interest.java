@@ -27,13 +27,13 @@ public class Interest extends Entitys implements Serializable {
     @Id
     @GeneratedValue(generator = "jpa-uuid")
     private String id;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="interest_user")
-    @JsonManagedReference
+    @JsonBackReference
     private User user;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="interest_sport")
-    @JsonManagedReference
+    @JsonBackReference
     private Sport sport;
     private int rate;
 

@@ -22,7 +22,7 @@ import java.util.List;
 public interface VenueRepo extends JpaRepository<Venue, Integer> {
     Page<Venue> findAllByOrderBySortDesc(Pageable pageable);
 
-    Page<Venue> findVenuesByNameLikeOrderBySortDesc(String name, Pageable page);
+    Page<Venue> findVenuesByNameContainsOrderBySortDesc(String name, Pageable page);
 
     Page<Venue> findVenuesByDistrict_IdOrderBySortDesc(int id, Pageable page);
 

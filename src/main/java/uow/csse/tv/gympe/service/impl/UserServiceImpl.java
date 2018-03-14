@@ -1,6 +1,5 @@
 package uow.csse.tv.gympe.service.impl;
 
-import antlr.debug.MessageAdapter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -11,7 +10,6 @@ import uow.csse.tv.gympe.model.*;
 import uow.csse.tv.gympe.repository.*;
 import uow.csse.tv.gympe.service.UserService;
 
-import javax.xml.bind.annotation.XmlEnumValue;
 import java.util.Date;
 import java.util.List;
 
@@ -34,9 +32,6 @@ public class UserServiceImpl implements UserService {
     private ClubRepo clubRepo;
 
     @Autowired
-    private VenueRepo venueRepo;
-
-    @Autowired
     private UserRepo userRepo;
 
     @Autowired
@@ -53,6 +48,15 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private RefereeRepo refereeRepo;
+
+    @Autowired
+    private ActOdsRepo actOdsRepo;
+
+    @Autowired
+    private ActivityRepo activityRepo;
+
+    @Autowired
+    private LogRepo logRepo;
 
     @Override
     public List<User> getAllUsers(int page) {
@@ -93,6 +97,8 @@ public class UserServiceImpl implements UserService {
         List<Club> tmp = u.getClubs();
         tmp.add(adc);
         u.setClubs(tmp);
+        Log log = new Log(u, new Date(), "join club #" + adc.getId());
+        logRepo.save(log);
         return userRepo.save(u);
     }
 
@@ -103,6 +109,8 @@ public class UserServiceImpl implements UserService {
         List<Club> tmp = u.getClubs();
         tmp.remove(deu);
         u.setClubs(tmp);
+        Log log = new Log(u, new Date(), "leave club #" + deu.getId());
+        logRepo.save(log);
         return userRepo.save(u);
     }
 
@@ -163,5 +171,49 @@ public class UserServiceImpl implements UserService {
     @Override
     public void deleteMessage(Msg msg) {
         messageRepo.delete(msg);
+    }
+
+    @Override
+    public List<ActOds> orderList(String usid, boolean paid, int page) {
+        Pageable pageable = new PageRequest(page, Const.PAGE_SIZE_FIVE);
+        Page<ActOds> tmp = actOdsRepo.findActOdsByUser_IdAndIspaid(usid, paid, pageable);
+        return tmp.getContent();
+    }
+
+    @Override
+    public List<ActOds> memberList(String actid, int page) {
+        Pageable pageable = new PageRequest(page, Const.PAGE_SIZE_TWENTY);
+        Page<ActOds> tmp = actOdsRepo.findActOdsByActivity_Id(actid, pageable);
+        return tmp.getContent();
+    }
+
+    @Override
+    public ActOds getActivityOrder(String actodsid) {
+        return actOdsRepo.findOne(actodsid);
+    }
+
+    @Override
+    public void bookorder(String usid, String actid, int count) {
+        User user = userRepo.findOne(usid);
+        Activity activity = activityRepo.findOne(actid);
+        ActOds booking = new ActOds(activity, user, new Date(), count);
+        booking = actOdsRepo.save(booking);
+        Log log = new Log(user, new Date(), "book order #" + booking.getId());
+        logRepo.save(log);
+    }
+
+    @Override
+    public boolean payOrder(String actodsid) {
+        ActOds tmp = actOdsRepo.findOne(actodsid);
+        if (tmp.getIspaid() == true) {
+            return false;
+        } else {
+            tmp.setIspaid(true);
+            tmp.setPdate(new Date());
+            actOdsRepo.save(tmp);
+            Log log = new Log(tmp.getUser(), new Date(), "pay order #" + tmp.getId());
+            logRepo.save(log);
+            return true;
+        }
     }
 }

@@ -65,12 +65,13 @@ public class User extends Entitys implements Serializable {
     @JoinTable(name = "tv_user_club", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "club_id"))
     @JsonBackReference
     private List<Club> clubs = new ArrayList<>();
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(name = "tv_user_follow", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "follow_id"))
-//    private List<User> follows = new ArrayList<>();
-//    @ManyToMany(mappedBy = "follows", cascade = CascadeType.ALL)
-//    @JsonBackReference
-//    private List<User> fans = new ArrayList<>();
+    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinTable(name = "tv_user_follow", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "follow_id"))
+    @JsonIgnoreProperties
+    private List<User> follows = new ArrayList<>();
+    @ManyToMany(mappedBy = "follows", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties
+    private List<User> fans = new ArrayList<>();
 
     public User() { super(); }
 
@@ -224,21 +225,19 @@ public class User extends Entitys implements Serializable {
         this.clubs = clubs;
     }
 
-//    public List<User> getFollows() {
-//        return follows;
-//    }
-//
-//    @JsonBackReference
-//    public void setFollows(List<User> follows) {
-//        this.follows = follows;
-//    }
-//
-//    public List<User> getFans() {
-//        return fans;
-//    }
-//
-//    @JsonBackReference
-//    public void setFans(List<User> fans) {
-//        this.fans = fans;
-//    }
+    public List<User> getFollows() {
+        return follows;
+    }
+
+    public void setFollows(List<User> follows) {
+        this.follows = follows;
+    }
+
+    public List<User> getFans() {
+        return fans;
+    }
+
+    public void setFans(List<User> fans) {
+        this.fans = fans;
+    }
 }
