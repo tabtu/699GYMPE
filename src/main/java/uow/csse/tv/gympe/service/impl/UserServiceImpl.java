@@ -58,6 +58,9 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private LogRepo logRepo;
 
+    @Autowired
+    private RunningManRepo runningManRepo;
+
     @Override
     public List<User> getAllUsers(int page) {
         Pageable pageable = new PageRequest(page, Const.PAGE_SIZE_TWENTY);
@@ -70,25 +73,25 @@ public class UserServiceImpl implements UserService {
         return userRepo.findOne(id);
     }
 
-//    @Override
-//    public User addFollowed(String user, String follow) {
-//        User u = userRepo.findOne(user);
-//        User adu = userRepo.findOne(follow);
-//        List<User> tmp = u.getFollows();
-//        tmp.add(adu);
-//        u.setFollows(tmp);
-//        return userRepo.save(u);
-//    }
-//
-//    @Override
-//    public User deleteFollowed(String user, String follow) {
-//        User u = userRepo.findOne(user);
-//        User deu = userRepo.findOne(follow);
-//        List<User> tmp = u.getFollows();
-//        tmp.remove(deu);
-//        u.setFollows(tmp);
-//        return userRepo.save(u);
-//    }
+    @Override
+    public User addFollowed(String user, String follow) {
+        User u = userRepo.findOne(user);
+        User adu = userRepo.findOne(follow);
+        List<User> tmp = u.getFollows();
+        tmp.add(adu);
+        u.setFollows(tmp);
+        return userRepo.save(u);
+    }
+
+    @Override
+    public User deleteFollowed(String user, String follow) {
+        User u = userRepo.findOne(user);
+        User deu = userRepo.findOne(follow);
+        List<User> tmp = u.getFollows();
+        tmp.remove(deu);
+        u.setFollows(tmp);
+        return userRepo.save(u);
+    }
 
     @Override
     public User addJoin(String user, int join) {
@@ -216,4 +219,5 @@ public class UserServiceImpl implements UserService {
             return true;
         }
     }
+
 }

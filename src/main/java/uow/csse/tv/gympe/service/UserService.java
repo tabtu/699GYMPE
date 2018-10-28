@@ -7,7 +7,7 @@ import uow.csse.tv.gympe.model.*;
 import java.util.List;
 
 /**
- * Sport Service Interface
+ * User Service Interface
  *
  * @author 	Tab Tu
  * @date	2018-01-30
@@ -22,9 +22,9 @@ public interface UserService {
 
     User getUser(String id);
 
-//    User addFollowed(String user, String follow);
-//
-//    User deleteFollowed(String user, String follow);
+    User addFollowed(String user, String follow);
+
+    User deleteFollowed(String user, String follow);
 
     User addJoin(String user, int join);
 

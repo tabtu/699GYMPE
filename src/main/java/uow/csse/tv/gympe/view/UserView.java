@@ -68,29 +68,29 @@ public class UserView {
         }
     }
 
-//    @RequestMapping(value = "/aduf{usr}{fol}", method = RequestMethod.POST)
-//    @ResponseBody
-//    public String addFollowed(@RequestParam("usr") String user,
-//                                @RequestParam("fol") String follow) {
-//        try {
-//            userService.addFollowed(user, follow);
-//            return "true";
-//        } catch (Exception e) {
-//            return "false";
-//        }
-//    }
-//
-//    @RequestMapping(value = "/deuf{usr}{fol}", method = RequestMethod.POST)
-//    @ResponseBody
-//    public String deleteFollowed(@RequestParam("usr") String user,
-//                                @RequestParam("fol") String follow) {
-//        try {
-//            userService.deleteFollowed(user, follow);
-//            return "true";
-//        } catch (Exception e) {
-//            return "false";
-//        }
-//    }
+    @RequestMapping(value = "/aduf{usr}{fol}", method = RequestMethod.POST)
+    @ResponseBody
+    public String addFollowed(@RequestParam("usr") String user,
+                                @RequestParam("fol") String follow) {
+        try {
+            userService.addFollowed(user, follow);
+            return "true";
+        } catch (Exception e) {
+            return "false";
+        }
+    }
+
+    @RequestMapping(value = "/deuf{usr}{fol}", method = RequestMethod.POST)
+    @ResponseBody
+    public String deleteFollowed(@RequestParam("usr") String user,
+                                @RequestParam("fol") String follow) {
+        try {
+            userService.deleteFollowed(user, follow);
+            return "true";
+        } catch (Exception e) {
+            return "false";
+        }
+    }
 
     @RequestMapping(value = "/aduj{usr}{club}", method = RequestMethod.POST)
     @ResponseBody

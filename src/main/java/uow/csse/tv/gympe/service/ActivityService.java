@@ -1,6 +1,7 @@
 package uow.csse.tv.gympe.service;
 
 import uow.csse.tv.gympe.model.Activity;
+import uow.csse.tv.gympe.model.User;
 
 import java.util.List;
 
@@ -25,5 +26,4 @@ public interface ActivityService {
     List<Activity> getActivityByVenue(int id, int page);
 
     List<Activity> getActivityForHomepage(int page);
-
 }

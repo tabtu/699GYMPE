@@ -67,10 +67,12 @@ public class User extends Entitys implements Serializable {
     private List<Club> clubs = new ArrayList<>();
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinTable(name = "tv_user_follow", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "follow_id"))
-    @JsonIgnoreProperties
+    @JsonBackReference
+    //@JsonIgnoreProperties
     private List<User> follows = new ArrayList<>();
     @ManyToMany(mappedBy = "follows", cascade = CascadeType.ALL)
-    @JsonIgnoreProperties
+    @JsonManagedReference
+    //@JsonIgnoreProperties
     private List<User> fans = new ArrayList<>();
 
     public User() { super(); }
