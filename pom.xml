@@ -5,7 +5,7 @@
 
 	<groupId>uow.csse.tv</groupId>
 	<artifactId>gympe</artifactId>
-	<version>1.0.0.1</version>
+	<version>1.0.2.1</version>
 	<packaging>war</packaging>
 	<!--<packaging>jar</packaging>-->
 

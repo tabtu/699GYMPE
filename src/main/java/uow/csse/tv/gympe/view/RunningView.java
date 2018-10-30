@@ -29,10 +29,10 @@ public class RunningView {
 
     @RequestMapping(value = "/lg", method = RequestMethod.POST)
     @ResponseBody
-    public Running logrunner(@RequestParam("usid") String uid,
+    public RunningMan logrunner(@RequestParam("usid") String uid,
                           @RequestParam("rmid") String rmid,
                           @RequestParam("location") String location) {
-        return runningService.logRunner(uid, Integer.parseInt(rmid), location);
+        return runningService.logRunner(uid, Integer.parseInt(rmid), location).getRunner();
     }
 
     @GetMapping(value = "/rp{rmid}")
