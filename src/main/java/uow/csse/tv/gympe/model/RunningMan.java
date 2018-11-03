@@ -17,8 +17,7 @@ import java.io.Serializable;
 public class RunningMan extends Entitys implements Serializable {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
+    private String id;
 
     private String name;
 
@@ -26,11 +25,11 @@ public class RunningMan extends Entitys implements Serializable {
 
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

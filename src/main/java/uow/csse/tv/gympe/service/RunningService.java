@@ -19,11 +19,13 @@ public interface RunningService {
 
     RunningMan addRunner(String name);
 
-    Running logRunner(String uid, int rmid, String location);
+    Running logRunner(String uid, String rmid, String location);
 
-//    List<Running> reportLoger(String uid, Date date);
+    List<Running> reportLoger(String uid);
 
-    List<Running> reportRunner(int rmid);
+    List<Running> reportRunner(String rmid);
 
     List<RunningMan> searchRunner(String name);
+
+    List<Running> reportALL();
 }

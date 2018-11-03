@@ -17,7 +17,7 @@ import java.util.List;
  */
 
 @Repository
-public interface RunningManRepo extends JpaRepository<RunningMan, Integer> {
+public interface RunningManRepo extends JpaRepository<RunningMan, String> {
 
     List<RunningMan> findByName(String name);
 }

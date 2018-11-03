@@ -28,12 +28,14 @@ public class Running extends Entitys implements Serializable {
     private User user;
     @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     @JoinColumn(name="r_runningman")
-//    @JsonBackReference
+    @JsonBackReference
     private RunningMan runner;
-
     private Date date;
-
     private String location;
+    @Transient
+    private String usid;
+    @Transient
+    private String rmid;
 
     public Running() {
 
@@ -77,5 +79,21 @@ public class Running extends Entitys implements Serializable {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+
+    public String getUsid() {
+        return usid;
+    }
+
+    public void setUsid(String usid) {
+        this.usid = usid;
+    }
+
+    public String getRmid() {
+        return rmid;
+    }
+
+    public void setRmid(String rmid) {
+        this.rmid = rmid;
     }
 }

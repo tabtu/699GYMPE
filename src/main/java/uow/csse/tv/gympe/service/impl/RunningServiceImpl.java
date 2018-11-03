@@ -51,12 +51,10 @@ public class RunningServiceImpl implements RunningService {
         } catch (Exception e) {
             return null;
         }
-
-
     }
 
     @Override
-    public Running logRunner(String uid, int rmid, String location) {
+    public Running logRunner(String uid, String rmid, String location) {
         try {
             Running running = new Running();
             running.setUser(userRepo.findOne(uid));
@@ -65,6 +63,8 @@ public class RunningServiceImpl implements RunningService {
             running.setDate(new Date());
             Running tmp = runningRepo.save(running);
             if (tmp != null) {
+                tmp.setUsid(tmp.getUser().getTelephone() + " : " + tmp.getUser().getId());
+                tmp.setRmid(tmp.getRunner().getId() + " : " + tmp.getRunner().getName());
                 return tmp;
             } else {
                 return null;
@@ -74,19 +74,40 @@ public class RunningServiceImpl implements RunningService {
         }
     }
 
-//    @Override
-//    public List<Running> reportLoger(String uid, Date date) {
-//
-//    }
+    @Override
+    public List<Running> reportLoger(String uid) {
+        User user = userRepo.findOne(uid);
+        List<Running> tmp = runningRepo.findByUserOrderByDateDesc(user);
+        for(Running ele : tmp) {
+            ele.setUsid(ele.getUser().getTelephone() + " : " + ele.getUser().getId());
+            ele.setRmid(ele.getRunner().getId() + " : " + ele.getRunner().getName());
+        }
+        return tmp;
+    }
 
     @Override
-    public List<Running> reportRunner(int rmid) {
+    public List<Running> reportRunner(String rmid) {
         RunningMan runner = runningManRepo.findOne(rmid);
-        return runningRepo.findByRunnerOrderByDateDesc(runner);
+        List<Running> tmp = runningRepo.findByRunnerOrderByDateDesc(runner);
+        for(Running ele : tmp) {
+            ele.setUsid(ele.getUser().getTelephone() + " : " + ele.getUser().getId());
+            ele.setRmid(ele.getRunner().getId() + " : " + ele.getRunner().getName());
+        }
+        return tmp;
     }
 
     @Override
     public List<RunningMan> searchRunner(String name) {
         return runningManRepo.findByName(name);
+    }
+
+    @Override
+    public List<Running> reportALL() {
+        List<Running> tmp =  runningRepo.findAll();
+        for(Running ele : tmp) {
+            ele.setUsid(ele.getUser().getTelephone() + " : " + ele.getUser().getId());
+            ele.setRmid(ele.getRunner().getId() + " : " + ele.getRunner().getName());
+        }
+        return tmp;
     }
 }

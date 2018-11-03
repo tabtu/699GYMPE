@@ -5,6 +5,7 @@ import org.springframework.stereotype.Repository;
 import uow.csse.tv.gympe.model.Referee;
 import uow.csse.tv.gympe.model.Running;
 import uow.csse.tv.gympe.model.RunningMan;
+import uow.csse.tv.gympe.model.User;
 
 import java.util.Date;
 import java.util.List;
@@ -22,6 +23,8 @@ import java.util.List;
 public interface RunningRepo extends JpaRepository<Running, Integer> {
 
     List<Running> findByRunnerOrderByDateDesc(RunningMan runner);
+
+    List<Running> findByUserOrderByDateDesc(User user);
 
     List<Running> findByDateBetween(Date d1, Date d2);
 }

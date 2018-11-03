@@ -29,15 +29,28 @@ public class RunningView {
 
     @RequestMapping(value = "/lg", method = RequestMethod.POST)
     @ResponseBody
-    public RunningMan logrunner(@RequestParam("usid") String uid,
+    public Running logrunner(@RequestParam("usid") String uid,
                           @RequestParam("rmid") String rmid,
                           @RequestParam("location") String location) {
-        return runningService.logRunner(uid, Integer.parseInt(rmid), location).getRunner();
+        return runningService.logRunner(uid, rmid, location);
+    }
+
+    @GetMapping(value = "/lp{uid}")
+    public List<Running> getreport(HttpServletRequest request) {
+        String uid = request.getParameter("uid");
+        return runningService.reportLoger(uid);
     }
 
     @GetMapping(value = "/rp{rmid}")
     public List<Running> getrunnerreport(HttpServletRequest request) {
-        int rmid = Integer.parseInt(request.getParameter("rmid"));
+        String rmid = request.getParameter("rmid");
         return runningService.reportRunner(rmid);
     }
+
+    @GetMapping(value = "/reportrunningALL")
+    public List<Running> getALL(HttpServletRequest request) {
+        return runningService.reportALL();
+    }
+
+
 }
