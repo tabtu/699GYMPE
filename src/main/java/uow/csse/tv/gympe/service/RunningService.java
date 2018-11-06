@@ -21,6 +21,8 @@ public interface RunningService {
 
     Running logRunner(String uid, String rmid, String location);
 
+    List<Running> reportLogerByUsnm(String usnm);
+
     List<Running> reportLoger(String uid);
 
     List<Running> reportRunner(String rmid);

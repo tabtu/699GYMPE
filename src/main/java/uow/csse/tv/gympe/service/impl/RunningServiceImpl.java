@@ -83,6 +83,17 @@ public class RunningServiceImpl implements RunningService {
     }
 
     @Override
+    public List<Running> reportLogerByUsnm(String usnm) {
+        User user = userRepo.findUserByUsernameOrEmailOrTelephone(usnm, "", "");
+        List<Running> tmp = runningRepo.findByUserOrderByDateDesc(user);
+        for(Running ele : tmp) {
+            ele.setUsid(ele.getUser().getTelephone() + " : " + ele.getUser().getId());
+            ele.setRmid(ele.getRunner().getId() + " : " + ele.getRunner().getName());
+        }
+        return tmp;
+    }
+
+    @Override
     public List<Running> reportLoger(String uid) {
         User user = userRepo.findOne(uid);
         List<Running> tmp = runningRepo.findByUserOrderByDateDesc(user);

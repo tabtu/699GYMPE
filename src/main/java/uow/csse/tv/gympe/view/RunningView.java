@@ -41,10 +41,10 @@ public class RunningView {
         return runningService.reportLoger(uid);
     }
 
-    @GetMapping(value = "/clp{uid}")
+    @GetMapping(value = "/clp{usnm}")
     public int countrunner(HttpServletRequest request) {
-        String uid = request.getParameter("uid");
-        return runningService.reportLoger(uid).size();
+        String uid = request.getParameter("usnm");
+        return runningService.reportLogerByUsnm(uid).size();
     }
 
     @GetMapping(value = "/rp{rmid}")
