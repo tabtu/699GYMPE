@@ -27,4 +27,6 @@ public interface RunningRepo extends JpaRepository<Running, Integer> {
     List<Running> findByUserOrderByDateDesc(User user);
 
     List<Running> findByDateBetween(Date d1, Date d2);
+
+    List<Running> findByRunnerAndUser(RunningMan runningMan, User user);
 }

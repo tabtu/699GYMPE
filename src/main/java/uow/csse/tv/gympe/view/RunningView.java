@@ -41,10 +41,27 @@ public class RunningView {
         return runningService.reportLoger(uid);
     }
 
+    @GetMapping(value = "/clp{uid}")
+    public int countrunner(HttpServletRequest request) {
+        String uid = request.getParameter("uid");
+        return runningService.reportLoger(uid).size();
+    }
+
     @GetMapping(value = "/rp{rmid}")
     public List<Running> getrunnerreport(HttpServletRequest request) {
         String rmid = request.getParameter("rmid");
         return runningService.reportRunner(rmid);
+    }
+
+    @GetMapping(value = "/crp{rmid}")
+    public String statusrunner(HttpServletRequest request) {
+        String rmid = request.getParameter("rmid");
+        List<Running> tmp = runningService.reportRunner(rmid);
+        String result = "";
+        for(Running ele : tmp) {
+            result += ele.getDate().toString() + " | " + ele.getRmid() + " | " + ele.getUsid() + "<br>";
+        }
+        return result;
     }
 
     @GetMapping(value = "/reportrunningALL")

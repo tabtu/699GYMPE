@@ -56,12 +56,20 @@ public class RunningServiceImpl implements RunningService {
     @Override
     public Running logRunner(String uid, String rmid, String location) {
         try {
-            Running running = new Running();
-            running.setUser(userRepo.findOne(uid));
-            running.setRunner(runningManRepo.findOne(rmid));
-            running.setLocation(location);
-            running.setDate(new Date());
-            Running tmp = runningRepo.save(running);
+            User user = userRepo.findOne(uid);
+            RunningMan runner = runningManRepo.findOne(rmid);
+            List<Running> check = runningRepo.findByRunnerAndUser(runner, user);
+            Running tmp;
+            if (check == null || check.size() != 0) {
+                tmp = check.get(0);
+            } else {
+                Running running = new Running();
+                running.setUser(userRepo.findOne(uid));
+                running.setRunner(runningManRepo.findOne(rmid));
+                running.setLocation(location);
+                running.setDate(new Date());
+                tmp = runningRepo.save(running);
+            }
             if (tmp != null) {
                 tmp.setUsid(tmp.getUser().getTelephone() + " : " + tmp.getUser().getId());
                 tmp.setRmid(tmp.getRunner().getId() + " : " + tmp.getRunner().getName());
